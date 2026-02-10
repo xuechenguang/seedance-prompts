@@ -211,6 +211,31 @@ h1 {
 
 .mode-tab:hover:not(.active) { color: var(--text-primary); background: var(--bg-card); }
 
+.hub-cta {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.hub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  font-size: 13px;
+  font-weight: 600;
+}
+.hub-link:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
 /* MAIN GRID */
 .main-grid {
   display: grid;
@@ -664,10 +689,9 @@ footer a:hover { color: var(--cyan); }
   <button class="mode-tab" id="tabI2V" onclick="setMode('i2v', this)">🖼️ Image → Video</button>
   <button class="mode-tab" id="tabV2Ref" onclick="setMode('v2ref', this)">🎬 2.0 Multi-Modal</button>
 </div>
-<div style="text-align:center; margin-top: 10px;">
-  <a href="/seedance-channel.html" style="display:inline-block; padding:8px 14px; border:1px solid var(--border); border-radius:999px; color:var(--text-secondary); font-size:12px; text-decoration:none;">
-    🔎 Explore Seedance Channel (All Keyword Pages)
-  </a>
+<div class="hub-cta">
+  <a id="homeChannelBtn" class="hub-link" href="/seedance-channel.html">🔎 Seedance Channel Hub</a>
+  <a id="homeBlogBtn" class="hub-link" href="/blog/">📰 Seedance Blog</a>
 </div>
 
 <!-- MAIN BUILDER -->
@@ -2008,7 +2032,9 @@ const translations = {
     link10: "Multi-Shot Prompt",
     link11: "Prompt Examples",
     link12: "Seedance Blog",
-    link13: "Seedance Channel Hub"
+    link13: "Seedance Channel Hub",
+    homeChannelBtn: "🔎 Seedance Channel Hub",
+    homeBlogBtn: "📰 Seedance Blog"
   },
   zh: {
     title: "Seedance 提示词生成器",
@@ -2091,7 +2117,9 @@ const translations = {
     link10: "多镜头提示词",
     link11: "提示词示例",
     link12: "Seedance 博客",
-    link13: "Seedance 频道聚合页"
+    link13: "Seedance 频道聚合页",
+    homeChannelBtn: "🔎 Seedance 频道页",
+    homeBlogBtn: "📰 Seedance 博客"
   },
   ja: {
     title: "Seedanceプロンプトジェネレーター",
@@ -2174,7 +2202,9 @@ const translations = {
     link10: "マルチショットプロンプト",
     link11: "プロンプト例",
     link12: "Seedance ブログ",
-    link13: "Seedance チャンネルハブ"
+    link13: "Seedance チャンネルハブ",
+    homeChannelBtn: "🔎 Seedance チャンネル",
+    homeBlogBtn: "📰 Seedance ブログ"
   },
   ko: {
     title: "Seedance 프롬프트 생성기",
@@ -2552,6 +2582,8 @@ function updateLanguage() {
   setText('formulaTitle', t.formulaTitle);
   setText('templatesTitle', t.templatesTitle);
   setText('templatesDesc', t.templatesDesc);
+  setText('homeChannelBtn', tr('homeChannelBtn'));
+  setText('homeBlogBtn', tr('homeBlogBtn'));
   setText('footerLine1', t.footerLine1);
   setText('footerLine2', t.footerLine2);
   setText('navPromptGuide', tr('navPromptGuide'));
