@@ -1,0 +1,11 @@
+{
+  "name": "seedance-prompts",
+  "version": "1.0.0",
+  "description": "Free Seedance Prompt Generator - Create optimized prompts for Seedance AI video generation",
+  "scripts": {
+    "dev": "npx serve public",
+    "start": "npx serve public"
+  },
+  "keywords": ["seedance", "prompt-generator", "ai-video", "seedance-2.0"],
+  "license": "MIT"
+}
