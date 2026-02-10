@@ -648,21 +648,21 @@ footer a:hover { color: var(--cyan); }
       <option value="fr">🇫🇷 Français</option>
     </select>
   </div>
-  <h1>Seedance Prompt Generator</h1>
+  <h1 id="heroTitle">Seedance Prompt Generator</h1>
   <small style="color: var(--text-dim); font-size: 10px;">v2.0 - Updated 2026-02-10</small>
   <p class="subtitle">The #1 free AI video prompt generator for Seedance. Create optimized text-to-video and image-to-video prompts for Seedance 2.0, 1.5 Pro & 1.0. Select your scene, style, and camera movement — get professional AI video prompts in seconds.</p>
   <div class="badge-row">
-    <span class="badge badge-new">🔥 Seedance 2.0 Ready</span>
-    <span class="badge badge-free">✓ 100% Free</span>
-    <span class="badge badge-ver">Supports 1.0 / 1.5 / 2.0</span>
+    <span class="badge badge-new" id="badgeReady">🔥 Seedance 2.0 Ready</span>
+    <span class="badge badge-free" id="badgeFree">✓ 100% Free</span>
+    <span class="badge badge-ver" id="badgeSupports">Supports 1.0 / 1.5 / 2.0</span>
   </div>
 </header>
 
 <!-- MODE TABS -->
 <div class="mode-tabs animate-in delay-1">
-  <button class="mode-tab active" onclick="setMode('t2v', this)">📝 Text → Video</button>
-  <button class="mode-tab" onclick="setMode('i2v', this)">🖼️ Image → Video</button>
-  <button class="mode-tab" onclick="setMode('v2ref', this)">🎬 2.0 Multi-Modal</button>
+  <button class="mode-tab active" id="tabT2V" onclick="setMode('t2v', this)">📝 Text → Video</button>
+  <button class="mode-tab" id="tabI2V" onclick="setMode('i2v', this)">🖼️ Image → Video</button>
+  <button class="mode-tab" id="tabV2Ref" onclick="setMode('v2ref', this)">🎬 2.0 Multi-Modal</button>
 </div>
 
 <!-- MAIN BUILDER -->
@@ -670,10 +670,10 @@ footer a:hover { color: var(--cyan); }
 
   <!-- LEFT: Subject & Scene -->
   <div class="card">
-    <div class="card-title">Subject & Action</div>
+    <div class="card-title" id="subjectActionTitle">Subject & Action</div>
     
     <div class="field">
-      <label>Scene Category</label>
+      <label id="sceneCategoryLabel">Scene Category</label>
       <select id="sceneCategory" onchange="updateSubjectHint()">
         <option value="product">🛍️ E-commerce / Product</option>
         <option value="social">📱 Social Media Content</option>
@@ -688,32 +688,32 @@ footer a:hover { color: var(--cyan); }
     </div>
 
     <div class="field">
-      <label>Subject Description</label>
+      <label id="subjectDescLabel">Subject Description</label>
       <textarea id="subject" placeholder="e.g., A young woman in a white dress standing in a wheat field at sunset" rows="3"></textarea>
     </div>
 
     <div class="field">
-      <label>Action / Motion</label>
+      <label id="actionMotionLabel">Action / Motion</label>
       <textarea id="action" placeholder="e.g., slowly turns around and smiles, hair blowing in the wind" rows="2"></textarea>
     </div>
 
     <div class="field">
-      <label>Negative Constraints (Optional)</label>
+      <label id="negativeLabel">Negative Constraints (Optional)</label>
       <textarea id="negative" placeholder="e.g., no blur, no extra fingers, no text watermark, no distortion" rows="2"></textarea>
     </div>
 
     <div class="field" id="i2vNote" style="display:none;">
-      <label style="color: var(--cyan);">💡 Image-to-Video Tip</label>
-      <p style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">For I2V: Focus on describing <strong>motion only</strong>. Don't repeat what's already visible in the image. Describe what moves, not what exists.</p>
+      <label id="i2vTipLabel" style="color: var(--cyan);">💡 Image-to-Video Tip</label>
+      <p id="i2vTipText" style="font-size: 12px; color: var(--text-dim); line-height: 1.5;">For I2V: Focus on describing <strong>motion only</strong>. Don't repeat what's already visible in the image. Describe what moves, not what exists.</p>
     </div>
   </div>
 
   <!-- RIGHT: Style & Camera -->
   <div class="card">
-    <div class="card-title">Style & Camera</div>
+    <div class="card-title" id="styleCameraTitle">Style & Camera</div>
 
     <div class="field">
-      <label>Visual Style</label>
+      <label id="visualStyleLabel">Visual Style</label>
       <div class="chips" id="styleChips">
         <span class="chip active" data-v="photorealistic">Photorealistic</span>
         <span class="chip" data-v="cinematic">Cinematic</span>
@@ -728,7 +728,7 @@ footer a:hover { color: var(--cyan); }
     </div>
 
     <div class="field">
-      <label>Camera Movement</label>
+      <label id="cameraMovementLabel">Camera Movement</label>
       <select id="camera">
         <option value="fixed">📷 Fixed Camera</option>
         <option value="pan-left">⬅️ Pan Left</option>
@@ -746,7 +746,7 @@ footer a:hover { color: var(--cyan); }
     </div>
 
     <div class="field">
-      <label>Mood / Atmosphere</label>
+      <label id="moodLabel">Mood / Atmosphere</label>
       <select id="mood">
         <option value="">— Auto —</option>
         <option value="warm-golden">☀️ Warm / Golden Hour</option>
@@ -761,7 +761,7 @@ footer a:hover { color: var(--cyan); }
     </div>
 
     <div class="field">
-      <label>Duration & Quality</label>
+      <label id="durationLabel">Duration & Quality</label>
       <div style="display: flex; gap: 10px;">
         <select id="duration" style="flex: 1;">
           <option value="5s">5 seconds</option>
@@ -776,7 +776,7 @@ footer a:hover { color: var(--cyan); }
     </div>
 
     <div class="field">
-      <label>Output Level</label>
+      <label id="outputLevelLabel">Output Level</label>
       <select id="outputLevel">
         <option value="fast">Fast (single-line prompt)</option>
         <option value="pro" selected>Pro (structured prompt)</option>
@@ -787,14 +787,14 @@ footer a:hover { color: var(--cyan); }
 
   <!-- MULTI-SHOT (optional) -->
   <div class="card" id="multishotCard" style="grid-column: 1 / -1;">
-    <div class="card-title">Multi-Shot Narrative (Optional)</div>
+    <div class="card-title" id="multiShotTitle">Multi-Shot Narrative (Optional)</div>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
       <div class="field" style="margin:0">
-        <label>Shot 2 Description</label>
+        <label id="shot2Label">Shot 2 Description</label>
         <textarea id="shot2" placeholder="e.g., Shot switch. Close-up of her hand touching the wheat, golden sunlight filtering through fingers." rows="2"></textarea>
       </div>
       <div class="field" style="margin:0">
-        <label>Shot 3 Description</label>
+        <label id="shot3Label">Shot 3 Description</label>
         <textarea id="shot3" placeholder="e.g., Shot switch. Wide aerial shot reveals the endless wheat field stretching to the horizon." rows="2"></textarea>
       </div>
     </div>
@@ -803,14 +803,14 @@ footer a:hover { color: var(--cyan); }
   <!-- V2 REFERENCE BUILDER -->
   <div class="v2-ref-section" id="v2RefSection" style="grid-column: 1 / -1;">
     <div class="card">
-      <div class="card-title">Seedance 2.0 — Multi-Modal Reference Setup</div>
-      <p style="font-size: 12px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.6;">
+      <div class="card-title" id="v2RefTitle">Seedance 2.0 — Multi-Modal Reference Setup</div>
+      <p id="v2RefDesc" style="font-size: 12px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.6;">
         Upload references in Dreamina/Jimeng, then use @tags in your prompt. This builder generates the correct reference syntax for you.
       </p>
       <div class="ref-builder">
         <div class="ref-slot">
           <div class="ref-slot-icon">🖼️</div>
-          <div class="ref-slot-label">Image References (up to 9)</div>
+          <div class="ref-slot-label" id="imgRefLabel">Image References (up to 9)</div>
           <div class="ref-slot-tag">@Image1 — @Image9</div>
           <div class="field" style="margin-top: 10px; margin-bottom: 0;">
             <input type="text" id="imgRef" placeholder="e.g., character face, product photo">
@@ -818,7 +818,7 @@ footer a:hover { color: var(--cyan); }
         </div>
         <div class="ref-slot">
           <div class="ref-slot-icon">🎥</div>
-          <div class="ref-slot-label">Video References (up to 3)</div>
+          <div class="ref-slot-label" id="vidRefLabel">Video References (up to 3)</div>
           <div class="ref-slot-tag">@Video1 — @Video3</div>
           <div class="field" style="margin-top: 10px; margin-bottom: 0;">
             <input type="text" id="vidRef" placeholder="e.g., camera movement, dance choreography">
@@ -826,7 +826,7 @@ footer a:hover { color: var(--cyan); }
         </div>
         <div class="ref-slot">
           <div class="ref-slot-icon">🔊</div>
-          <div class="ref-slot-label">Audio References (up to 3)</div>
+          <div class="ref-slot-label" id="audioRefLabel">Audio References (up to 3)</div>
           <div class="ref-slot-tag">@Audio1 — @Audio3</div>
           <div class="field" style="margin-top: 10px; margin-bottom: 0;">
             <input type="text" id="audioRef" placeholder="e.g., background music beat, voiceover">
@@ -839,32 +839,32 @@ footer a:hover { color: var(--cyan); }
   <!-- GENERATE BUTTON -->
   <div style="grid-column: 1 / -1;">
     <div style="display: flex; gap: 10px; align-items: center;">
-      <button class="btn btn-generate" style="flex: 1;" onclick="generatePrompt()">
+      <button class="btn btn-generate" id="generateBtn" style="flex: 1;" onclick="generatePrompt()">
         ⚡ Generate Seedance Prompt
       </button>
-      <button class="btn btn-secondary" onclick="showBatchMode()">
+      <button class="btn btn-secondary" id="batchModeBtn" onclick="showBatchMode()">
         📊 Batch Mode
       </button>
-      <button class="btn btn-secondary" onclick="showFavorites()">
-        ❤️ Favorites (<span id="favCount">0</span>)
+      <button class="btn btn-secondary" id="favoritesBtn" onclick="showFavorites()">
+        ❤️ <span id="favoritesText">Favorites</span> (<span id="favCount">0</span>)
       </button>
     </div>
-    <p style="margin-top: 8px; font-size: 12px; color: var(--text-dim);">Google login is required before generating prompts.</p>
+    <p id="authHint" style="margin-top: 8px; font-size: 12px; color: var(--text-dim);">Google login is required before generating prompts.</p>
   </div>
 
   <!-- OUTPUT -->
   <div class="output-area" id="outputArea" style="display: none;">
     <div class="output-box">
-      <div class="output-label">Generated Prompt</div>
+      <div class="output-label" id="outputLabel">Generated Prompt</div>
       <div class="output-text" id="outputText"></div>
       <div class="output-actions">
-        <button class="btn btn-primary" onclick="copyPrompt()">📋 Copy Prompt</button>
-        <button class="btn btn-secondary" onclick="regenerateVariation()">🔄 Variation</button>
-        <button class="btn btn-secondary" onclick="enhancePrompt()">✨ Enhance</button>
-        <button class="btn btn-secondary" onclick="polishPrompt()">🎯 Pro Polish</button>
-        <button class="btn btn-secondary" onclick="exportPromptPack()">📦 Export Pack</button>
-        <button class="btn btn-secondary" onclick="openProCheckout()">💳 Unlock Pro</button>
-        <button class="btn btn-secondary" onclick="addToFavorites()">❤️ Save</button>
+        <button class="btn btn-primary" id="copyBtn" onclick="copyPrompt()">📋 Copy Prompt</button>
+        <button class="btn btn-secondary" id="variationBtn" onclick="regenerateVariation()">🔄 Variation</button>
+        <button class="btn btn-secondary" id="enhanceBtn" onclick="enhancePrompt()">✨ Enhance</button>
+        <button class="btn btn-secondary" id="polishBtn" onclick="polishPrompt()">🎯 Pro Polish</button>
+        <button class="btn btn-secondary" id="exportBtn" onclick="exportPromptPack()">📦 Export Pack</button>
+        <button class="btn btn-secondary" id="unlockBtn" onclick="openProCheckout()">💳 Unlock Pro</button>
+        <button class="btn btn-secondary" id="saveBtn" onclick="addToFavorites()">❤️ Save</button>
       </div>
     </div>
   </div>
@@ -873,7 +873,7 @@ footer a:hover { color: var(--cyan); }
 
 <!-- PROMPT FORMULA -->
 <div class="formula-section animate-in delay-3" id="formula">
-  <div class="formula-title">📐 Seedance Prompt Formula</div>
+  <div class="formula-title" id="formulaTitle">📐 Seedance Prompt Formula</div>
   <div class="formula-block">
     <span class="f-subject">[Subject]</span> + <span class="f-action">[Motion/Action]</span> + <span class="f-scene">[Background/Scene]</span> + <span class="f-camera">[Camera Movement]</span>
 
@@ -885,15 +885,15 @@ For Seedance 2.0: Use <span class="f-subject">@Image1</span> <span class="f-acti
 <!-- TEMPLATES -->
 <div class="templates-section" id="templates">
   <div class="section-header">
-    <h2>🎯 Prompt Templates</h2>
-    <p>One-click templates for common scenarios. Click to load into the generator.</p>
+    <h2 id="templatesTitle">🎯 Prompt Templates</h2>
+    <p id="templatesDesc">One-click templates for common scenarios. Click to load into the generator.</p>
   </div>
   <div class="template-grid" id="templateGrid"></div>
 </div>
 
 <footer>
-  <p>SeedanceTool.com — Free Seedance Prompt Generator for AI video creation</p>
-  <p style="margin-top: 8px;">Not affiliated with ByteDance. Seedance is a trademark of ByteDance.</p>
+  <p id="footerLine1">SeedanceTool.com — Free Seedance Prompt Generator for AI video creation</p>
+  <p id="footerLine2" style="margin-top: 8px;">Not affiliated with ByteDance. Seedance is a trademark of ByteDance.</p>
   <p style="margin-top: 8px;">
     <a href="#formula">Prompt Guide</a> · <a href="#templates">Templates</a> · <a href="#generator">Generator</a> · <a href="/pro.html">Pro</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a>
   </p>
@@ -1046,14 +1046,15 @@ function setupFirebaseAuth(config) {
 }
 
 function setAuthUiState(user, enabled) {
+  const t = translations[currentLang] || translations.en;
   const statusEl = document.getElementById('authStatus');
   const loginBtn = document.getElementById('googleLoginBtn');
   const logoutBtn = document.getElementById('logoutBtn');
   if (!statusEl || !loginBtn || !logoutBtn) return;
 
   if (!enabled) {
-    statusEl.textContent = 'Auth Setup Needed';
-    loginBtn.textContent = 'Config Firebase';
+    statusEl.textContent = t.authSetup || 'Auth Setup Needed';
+    loginBtn.textContent = t.authConfigBtn || 'Config Firebase';
     logoutBtn.style.display = 'none';
     return;
   }
@@ -1062,9 +1063,10 @@ function setAuthUiState(user, enabled) {
     statusEl.textContent = `Hi, ${user.displayName || user.email || 'User'}`;
     loginBtn.style.display = 'none';
     logoutBtn.style.display = 'inline-block';
+    logoutBtn.textContent = t.authLogout || 'Logout';
   } else {
-    statusEl.textContent = 'Guest';
-    loginBtn.textContent = 'Google Login';
+    statusEl.textContent = t.authGuest || 'Guest';
+    loginBtn.textContent = t.authLogin || 'Google Login';
     loginBtn.style.display = 'inline-block';
     logoutBtn.style.display = 'none';
   }
@@ -1835,7 +1837,41 @@ const translations = {
     variation: "🔄 Variation",
     enhance: "✨ Enhance",
     aiOptimize: "🎯 Pro Polish",
-    save: "❤️ Save"
+    save: "❤️ Save",
+    negativeLabel: "Negative Constraints (Optional)",
+    outputLevelLabel: "Output Level",
+    multiShotTitle: "Multi-Shot Narrative (Optional)",
+    shot2Label: "Shot 2 Description",
+    shot3Label: "Shot 3 Description",
+    v2RefTitle: "Seedance 2.0 — Multi-Modal Reference Setup",
+    v2RefDesc: "Upload references in Dreamina/Jimeng, then use @tags in your prompt. This builder generates the correct reference syntax for you.",
+    imgRefLabel: "Image References (up to 9)",
+    vidRefLabel: "Video References (up to 3)",
+    audioRefLabel: "Audio References (up to 3)",
+    authHint: "Google login is required before generating prompts.",
+    outputLabel: "Generated Prompt",
+    exportPack: "📦 Export Pack",
+    unlockPro: "💳 Unlock Pro",
+    formulaTitle: "📐 Seedance Prompt Formula",
+    templatesTitle: "🎯 Prompt Templates",
+    templatesDesc: "One-click templates for common scenarios. Click to load into the generator.",
+    footerLine1: "SeedanceTool.com — Free Seedance Prompt Generator for AI video creation",
+    footerLine2: "Not affiliated with ByteDance. Seedance is a trademark of ByteDance.",
+    i2vTipLabel: "💡 Image-to-Video Tip",
+    i2vTipText: "For I2V: Focus on describing motion only. Don't repeat what's already visible in the image. Describe what moves, not what exists.",
+    subjectPlaceholder: "e.g., A young woman in a white dress standing in a wheat field at sunset",
+    actionPlaceholder: "e.g., slowly turns around and smiles, hair blowing in the wind",
+    negativePlaceholder: "e.g., no blur, no extra fingers, no text watermark, no distortion",
+    shot2Placeholder: "e.g., Shot switch. Close-up of her hand touching the wheat, golden sunlight filtering through fingers.",
+    shot3Placeholder: "e.g., Shot switch. Wide aerial shot reveals the endless wheat field stretching to the horizon.",
+    imgRefPlaceholder: "e.g., character face, product photo",
+    vidRefPlaceholder: "e.g., camera movement, dance choreography",
+    audioRefPlaceholder: "e.g., background music beat, voiceover",
+    authGuest: "Guest",
+    authSetup: "Auth Setup Needed",
+    authConfigBtn: "Config Firebase",
+    authLogin: "Google Login",
+    authLogout: "Logout"
   },
   zh: {
     title: "Seedance 提示词生成器",
@@ -1862,7 +1898,41 @@ const translations = {
     variation: "🔄 变体",
     enhance: "✨ 增强",
     aiOptimize: "🎯 专业润色",
-    save: "❤️ 保存"
+    save: "❤️ 保存",
+    negativeLabel: "负面约束（可选）",
+    outputLevelLabel: "输出级别",
+    multiShotTitle: "多镜头叙事（可选）",
+    shot2Label: "镜头2描述",
+    shot3Label: "镜头3描述",
+    v2RefTitle: "Seedance 2.0 — 多模态参考设置",
+    v2RefDesc: "先在 Dreamina/Jimeng 上传参考素材，再在提示词中使用 @标签。本工具会为你生成正确的引用写法。",
+    imgRefLabel: "图片参考（最多9个）",
+    vidRefLabel: "视频参考（最多3个）",
+    audioRefLabel: "音频参考（最多3个）",
+    authHint: "生成提示词前需要先使用 Google 登录。",
+    outputLabel: "生成结果",
+    exportPack: "📦 导出提示词包",
+    unlockPro: "💳 解锁 Pro",
+    formulaTitle: "📐 Seedance 提示词公式",
+    templatesTitle: "🎯 提示词模板",
+    templatesDesc: "常见场景一键模板，点击即可加载到生成器。",
+    footerLine1: "SeedanceTool.com — 免费 Seedance AI 视频提示词生成器",
+    footerLine2: "与 ByteDance 无关联。Seedance 为 ByteDance 商标。",
+    i2vTipLabel: "💡 图生视频提示",
+    i2vTipText: "I2V 请专注描述运动，不要重复图片里已经存在的静态内容。",
+    subjectPlaceholder: "例如：一位穿白裙的年轻女性站在日落麦田中",
+    actionPlaceholder: "例如：缓慢转身微笑，头发随风飘动",
+    negativePlaceholder: "例如：无模糊、无多余手指、无文字水印、无变形",
+    shot2Placeholder: "例如：镜头切换。特写她的手触碰麦穗，金色阳光穿过指缝。",
+    shot3Placeholder: "例如：镜头切换。航拍远景展示延伸到地平线的麦田。",
+    imgRefPlaceholder: "例如：人物脸部、产品照片",
+    vidRefPlaceholder: "例如：镜头运动、舞蹈编排",
+    audioRefPlaceholder: "例如：背景节奏、旁白音色",
+    authGuest: "访客",
+    authSetup: "需配置登录",
+    authConfigBtn: "配置 Firebase",
+    authLogin: "Google 登录",
+    authLogout: "退出登录"
   },
   ja: {
     title: "Seedanceプロンプトジェネレーター",
@@ -1889,7 +1959,41 @@ const translations = {
     variation: "🔄 バリエーション",
     enhance: "✨ 強化",
     aiOptimize: "🎯 プロ研磨",
-    save: "❤️ 保存"
+    save: "❤️ 保存",
+    negativeLabel: "ネガティブ制約（任意）",
+    outputLevelLabel: "出力レベル",
+    multiShotTitle: "マルチショット構成（任意）",
+    shot2Label: "ショット2の説明",
+    shot3Label: "ショット3の説明",
+    v2RefTitle: "Seedance 2.0 — マルチモーダル参照設定",
+    v2RefDesc: "Dreamina/Jimeng で参照素材をアップロードし、プロンプト内で @タグを使用します。正しい参照構文を自動生成します。",
+    imgRefLabel: "画像参照（最大9件）",
+    vidRefLabel: "動画参照（最大3件）",
+    audioRefLabel: "音声参照（最大3件）",
+    authHint: "プロンプト生成の前に Google ログインが必要です。",
+    outputLabel: "生成プロンプト",
+    exportPack: "📦 パックを書き出し",
+    unlockPro: "💳 Pro を解除",
+    formulaTitle: "📐 Seedance プロンプト公式",
+    templatesTitle: "🎯 プロンプトテンプレート",
+    templatesDesc: "よく使うシナリオをワンクリックで読み込みできます。",
+    footerLine1: "SeedanceTool.com — Seedance向け無料AI動画プロンプト生成ツール",
+    footerLine2: "ByteDanceとは提携していません。SeedanceはByteDanceの商標です。",
+    i2vTipLabel: "💡 画像→動画のヒント",
+    i2vTipText: "I2Vでは動きのみを記述してください。画像に既にある内容は繰り返さないでください。",
+    subjectPlaceholder: "例：夕暮れの麦畑に立つ白いドレスの女性",
+    actionPlaceholder: "例：ゆっくり振り向いて微笑む、髪が風になびく",
+    negativePlaceholder: "例：ぼやけ禁止、余分な指禁止、文字透かし禁止、歪み禁止",
+    shot2Placeholder: "例：Shot switch. 麦に触れる手元のクローズアップ、指の間から黄金の光。",
+    shot3Placeholder: "例：Shot switch. 地平線まで続く麦畑を見せるワイドな空撮。",
+    imgRefPlaceholder: "例：顔の参照、商品写真",
+    vidRefPlaceholder: "例：カメラワーク、振り付け",
+    audioRefPlaceholder: "例：BGMのビート、ナレーション",
+    authGuest: "ゲスト",
+    authSetup: "認証設定が必要",
+    authConfigBtn: "Firebaseを設定",
+    authLogin: "Google ログイン",
+    authLogout: "ログアウト"
   },
   ko: {
     title: "Seedance 프롬프트 생성기",
@@ -1916,7 +2020,41 @@ const translations = {
     variation: "🔄 변형",
     enhance: "✨ 향상",
     aiOptimize: "🎯 프로 폴리시",
-    save: "❤️ 저장"
+    save: "❤️ 저장",
+    negativeLabel: "네거티브 제약 (선택)",
+    outputLevelLabel: "출력 레벨",
+    multiShotTitle: "멀티샷 내러티브 (선택)",
+    shot2Label: "샷 2 설명",
+    shot3Label: "샷 3 설명",
+    v2RefTitle: "Seedance 2.0 — 멀티모달 참조 설정",
+    v2RefDesc: "Dreamina/Jimeng에 참조를 업로드한 뒤 프롬프트에서 @태그를 사용하세요. 올바른 참조 문법을 생성해줍니다.",
+    imgRefLabel: "이미지 참조 (최대 9개)",
+    vidRefLabel: "비디오 참조 (최대 3개)",
+    audioRefLabel: "오디오 참조 (최대 3개)",
+    authHint: "프롬프트 생성 전에 Google 로그인이 필요합니다.",
+    outputLabel: "생성된 프롬프트",
+    exportPack: "📦 패키지 내보내기",
+    unlockPro: "💳 Pro 잠금해제",
+    formulaTitle: "📐 Seedance 프롬프트 공식",
+    templatesTitle: "🎯 프롬프트 템플릿",
+    templatesDesc: "자주 쓰는 시나리오를 원클릭으로 로드합니다.",
+    footerLine1: "SeedanceTool.com — Seedance용 무료 AI 비디오 프롬프트 생성기",
+    footerLine2: "ByteDance와 무관합니다. Seedance는 ByteDance의 상표입니다.",
+    i2vTipLabel: "💡 이미지→비디오 팁",
+    i2vTipText: "I2V에서는 움직임만 설명하세요. 이미지에 이미 보이는 내용은 반복하지 마세요.",
+    subjectPlaceholder: "예: 석양의 밀밭에 서 있는 흰 드레스 여성",
+    actionPlaceholder: "예: 천천히 돌아보며 미소, 바람에 머리카락이 흔들림",
+    negativePlaceholder: "예: 블러 금지, 손가락 추가 금지, 워터마크 금지, 왜곡 금지",
+    shot2Placeholder: "예: Shot switch. 밀을 만지는 손 클로즈업, 손가락 사이로 황금빛 햇살.",
+    shot3Placeholder: "예: Shot switch. 지평선까지 이어지는 밀밭을 보여주는 와이드 항공샷.",
+    imgRefPlaceholder: "예: 얼굴 레퍼런스, 제품 사진",
+    vidRefPlaceholder: "예: 카메라 무빙, 안무",
+    audioRefPlaceholder: "예: 배경 비트, 보이스오버",
+    authGuest: "게스트",
+    authSetup: "인증 설정 필요",
+    authConfigBtn: "Firebase 설정",
+    authLogin: "Google 로그인",
+    authLogout: "로그아웃"
   },
   fr: {
     title: "Générateur de Prompts Seedance",
@@ -1943,7 +2081,200 @@ const translations = {
     variation: "🔄 Variation",
     enhance: "✨ Améliorer",
     aiOptimize: "🎯 Finition Pro",
-    save: "❤️ Sauvegarder"
+    save: "❤️ Sauvegarder",
+    negativeLabel: "Contraintes négatives (optionnel)",
+    outputLevelLabel: "Niveau de sortie",
+    multiShotTitle: "Narration multi-plan (optionnel)",
+    shot2Label: "Description du plan 2",
+    shot3Label: "Description du plan 3",
+    v2RefTitle: "Seedance 2.0 — Configuration multi-modale",
+    v2RefDesc: "Importez vos références dans Dreamina/Jimeng puis utilisez les tags @ dans le prompt. Ce module génère la syntaxe correcte.",
+    imgRefLabel: "Références image (jusqu'à 9)",
+    vidRefLabel: "Références vidéo (jusqu'à 3)",
+    audioRefLabel: "Références audio (jusqu'à 3)",
+    authHint: "Connexion Google requise avant de générer un prompt.",
+    outputLabel: "Prompt généré",
+    exportPack: "📦 Exporter le pack",
+    unlockPro: "💳 Débloquer Pro",
+    formulaTitle: "📐 Formule de prompt Seedance",
+    templatesTitle: "🎯 Modèles de prompt",
+    templatesDesc: "Modèles en un clic pour des scénarios courants.",
+    footerLine1: "SeedanceTool.com — Générateur gratuit de prompts Seedance pour vidéo IA",
+    footerLine2: "Non affilié à ByteDance. Seedance est une marque de ByteDance.",
+    i2vTipLabel: "💡 Astuce Image→Vidéo",
+    i2vTipText: "En I2V, décrivez uniquement le mouvement. Ne répétez pas ce qui est déjà visible dans l'image.",
+    subjectPlaceholder: "ex. une jeune femme en robe blanche dans un champ au coucher du soleil",
+    actionPlaceholder: "ex. se tourne lentement et sourit, cheveux au vent",
+    negativePlaceholder: "ex. pas de flou, pas de doigts en trop, pas de watermark texte, pas de distorsion",
+    shot2Placeholder: "ex. Shot switch. Gros plan sur sa main touchant le blé, lumière dorée entre les doigts.",
+    shot3Placeholder: "ex. Shot switch. Plan aérien large montrant le champ jusqu'à l'horizon.",
+    imgRefPlaceholder: "ex. visage du personnage, photo produit",
+    vidRefPlaceholder: "ex. mouvement de caméra, chorégraphie",
+    audioRefPlaceholder: "ex. rythme musical, voix off",
+    authGuest: "Invité",
+    authSetup: "Configuration requise",
+    authConfigBtn: "Configurer Firebase",
+    authLogin: "Connexion Google",
+    authLogout: "Déconnexion"
+  }
+};
+
+const optionI18n = {
+  en: {
+    sceneCategory: {
+      product: '🛍️ E-commerce / Product',
+      social: '📱 Social Media Content',
+      cinematic: '🎬 Cinematic / Film',
+      education: '📚 Education / Tutorial',
+      nature: '🌿 Nature / Landscape',
+      portrait: '👤 Character / Portrait',
+      dance: '💃 Dance / Motion',
+      food: '🍜 Food / Culinary',
+      custom: '✏️ Custom'
+    },
+    camera: {
+      fixed: '📷 Fixed Camera',
+      'pan-left': '⬅️ Pan Left',
+      'pan-right': '➡️ Pan Right',
+      'zoom-in': '🔍 Zoom In',
+      'zoom-out': '🔎 Zoom Out',
+      tracking: '🎯 Tracking Shot',
+      orbit: '🔄 Orbit / Surround',
+      drone: '🚁 Aerial / Drone',
+      handheld: '🤝 Handheld / Shaky',
+      'dolly-zoom': '🎬 Dolly Zoom (Hitchcock)',
+      crane: '🏗️ Crane Shot (Up)',
+      follow: '🚶 Follow Shot'
+    },
+    mood: {
+      '': '— Auto —',
+      'warm-golden': '☀️ Warm / Golden Hour',
+      'moody-dramatic': '🌑 Moody / Dramatic',
+      'bright-cheerful': '🌈 Bright / Cheerful',
+      'cold-blue': '❄️ Cold / Blue Tone',
+      'neon-glow': '💜 Neon / Glow',
+      'soft-dreamy': '☁️ Soft / Dreamy',
+      'dark-horror': '👻 Dark / Horror',
+      'vintage-retro': '📼 Vintage / Retro'
+    },
+    duration: { '5s': '5 seconds', '10s': '10 seconds' },
+    quality: { '1080p': '1080p HD', '720p': '720p', '2k': '2K (v2.0)' },
+    outputLevel: { fast: 'Fast (single-line prompt)', pro: 'Pro (structured prompt)', cinematic: 'Cinematic (high-detail)' },
+    styleChips: {
+      photorealistic: 'Photorealistic',
+      cinematic: 'Cinematic',
+      anime: 'Anime',
+      cyberpunk: 'Cyberpunk',
+      watercolor: 'Watercolor',
+      'felt-texture': 'Felt Texture',
+      noir: 'Film Noir',
+      illustration: 'Illustration',
+      '3d-render': '3D Render'
+    }
+  },
+  zh: {
+    sceneCategory: {
+      product: '🛍️ 电商 / 产品',
+      social: '📱 社媒内容',
+      cinematic: '🎬 电影 / 叙事',
+      education: '📚 教学 / 讲解',
+      nature: '🌿 自然 / 风景',
+      portrait: '👤 人像 / 角色',
+      dance: '💃 舞蹈 / 动作',
+      food: '🍜 美食 / 烹饪',
+      custom: '✏️ 自定义'
+    },
+    camera: {
+      fixed: '📷 固定镜头',
+      'pan-left': '⬅️ 向左平移',
+      'pan-right': '➡️ 向右平移',
+      'zoom-in': '🔍 推近',
+      'zoom-out': '🔎 拉远',
+      tracking: '🎯 跟拍',
+      orbit: '🔄 环绕',
+      drone: '🚁 航拍 / 无人机',
+      handheld: '🤝 手持',
+      'dolly-zoom': '🎬 伸缩变焦',
+      crane: '🏗️ 升降镜头',
+      follow: '🚶 跟随镜头'
+    },
+    mood: {
+      '': '— 自动 —',
+      'warm-golden': '☀️ 暖金色',
+      'moody-dramatic': '🌑 阴郁戏剧',
+      'bright-cheerful': '🌈 明亮活泼',
+      'cold-blue': '❄️ 冷蓝色调',
+      'neon-glow': '💜 霓虹发光',
+      'soft-dreamy': '☁️ 柔和梦幻',
+      'dark-horror': '👻 黑暗惊悚',
+      'vintage-retro': '📼 复古风'
+    },
+    duration: { '5s': '5 秒', '10s': '10 秒' },
+    quality: { '1080p': '1080p 高清', '720p': '720p', '2k': '2K (v2.0)' },
+    outputLevel: { fast: '快速（单行提示词）', pro: '专业（结构化提示词）', cinematic: '电影感（高细节）' },
+    styleChips: {
+      photorealistic: '写实',
+      cinematic: '电影感',
+      anime: '动漫',
+      cyberpunk: '赛博朋克',
+      watercolor: '水彩',
+      'felt-texture': '毛毡质感',
+      noir: '黑色电影',
+      illustration: '插画',
+      '3d-render': '3D 渲染'
+    }
+  },
+  ja: {
+    sceneCategory: {
+      product: '🛍️ EC / 商品',
+      social: '📱 SNSコンテンツ',
+      cinematic: '🎬 シネマ / 映画',
+      education: '📚 教育 / 解説',
+      nature: '🌿 自然 / 風景',
+      portrait: '👤 人物 / ポートレート',
+      dance: '💃 ダンス / モーション',
+      food: '🍜 料理 / フード',
+      custom: '✏️ カスタム'
+    },
+    camera: {
+      fixed: '📷 固定カメラ',
+      'pan-left': '⬅️ 左パン',
+      'pan-right': '➡️ 右パン',
+      'zoom-in': '🔍 ズームイン',
+      'zoom-out': '🔎 ズームアウト',
+      tracking: '🎯 トラッキング',
+      orbit: '🔄 オービット',
+      drone: '🚁 ドローン / 空撮',
+      handheld: '🤝 手持ち',
+      'dolly-zoom': '🎬 ドリーズーム',
+      crane: '🏗️ クレーンショット',
+      follow: '🚶 フォローショット'
+    },
+    mood: {
+      '': '— 自動 —',
+      'warm-golden': '☀️ 暖かい / ゴールデン',
+      'moody-dramatic': '🌑 ムーディー / ドラマチック',
+      'bright-cheerful': '🌈 明るい / 楽しい',
+      'cold-blue': '❄️ クール / ブルー',
+      'neon-glow': '💜 ネオン / グロー',
+      'soft-dreamy': '☁️ ソフト / 夢幻',
+      'dark-horror': '👻 ダーク / ホラー',
+      'vintage-retro': '📼 ヴィンテージ / レトロ'
+    },
+    duration: { '5s': '5 秒', '10s': '10 秒' },
+    quality: { '1080p': '1080p HD', '720p': '720p', '2k': '2K (v2.0)' },
+    outputLevel: { fast: '高速（1行）', pro: 'プロ（構造化）', cinematic: 'シネマ（高精細）' },
+    styleChips: {
+      photorealistic: 'フォトリアル',
+      cinematic: 'シネマ',
+      anime: 'アニメ',
+      cyberpunk: 'サイバーパンク',
+      watercolor: '水彩',
+      'felt-texture': 'フェルト質感',
+      noir: 'フィルムノワール',
+      illustration: 'イラスト',
+      '3d-render': '3Dレンダー'
+    }
   }
 };
 
@@ -1958,6 +2289,7 @@ function changeLanguage() {
 
 function updateLanguage() {
   const t = translations[currentLang];
+  const o = optionI18n[currentLang] || optionI18n.en;
 
   // Update HTML lang attribute
   document.getElementById('htmlLang').lang = currentLang;
@@ -1977,6 +2309,94 @@ function updateLanguage() {
 
   const subtitle = document.querySelector('.subtitle');
   if (subtitle) subtitle.textContent = t.subtitle;
+
+  const setText = (id, val) => {
+    const el = document.getElementById(id);
+    if (el && val) el.textContent = val;
+  };
+  const setPlaceholder = (id, val) => {
+    const el = document.getElementById(id);
+    if (el && val) el.placeholder = val;
+  };
+
+  setText('badgeReady', t.badgeReady);
+  setText('badgeFree', t.badgeFree);
+  setText('badgeSupports', t.badgeSupports);
+  setText('tabT2V', t.tabT2V);
+  setText('tabI2V', t.tabI2V);
+  setText('tabV2Ref', t.tabV2Ref);
+  setText('subjectActionTitle', t.subjectAction);
+  setText('sceneCategoryLabel', t.sceneCategory);
+  setText('subjectDescLabel', t.subjectDesc);
+  setText('actionMotionLabel', t.actionMotion);
+  setText('negativeLabel', t.negativeLabel);
+  setText('i2vTipLabel', t.i2vTipLabel);
+  setText('styleCameraTitle', t.styleCamera);
+  setText('visualStyleLabel', t.visualStyle);
+  setText('cameraMovementLabel', t.cameraMovement);
+  setText('moodLabel', t.mood);
+  setText('durationLabel', t.duration);
+  setText('outputLevelLabel', t.outputLevelLabel);
+  setText('multiShotTitle', t.multiShotTitle);
+  setText('shot2Label', t.shot2Label);
+  setText('shot3Label', t.shot3Label);
+  setText('v2RefTitle', t.v2RefTitle);
+  setText('v2RefDesc', t.v2RefDesc);
+  setText('imgRefLabel', t.imgRefLabel);
+  setText('vidRefLabel', t.vidRefLabel);
+  setText('audioRefLabel', t.audioRefLabel);
+  setText('generateBtn', t.generate);
+  setText('batchModeBtn', t.batchMode);
+  setText('favoritesText', t.favorites ? t.favorites.replace(/^❤️\s*/, '') : 'Favorites');
+  setText('authHint', t.authHint);
+  setText('outputLabel', t.outputLabel);
+  setText('copyBtn', t.copy);
+  setText('variationBtn', t.variation);
+  setText('enhanceBtn', t.enhance);
+  setText('polishBtn', t.aiOptimize);
+  setText('exportBtn', t.exportPack);
+  setText('unlockBtn', t.unlockPro);
+  setText('saveBtn', t.save);
+  setText('formulaTitle', t.formulaTitle);
+  setText('templatesTitle', t.templatesTitle);
+  setText('templatesDesc', t.templatesDesc);
+  setText('footerLine1', t.footerLine1);
+  setText('footerLine2', t.footerLine2);
+
+  const i2vTipText = document.getElementById('i2vTipText');
+  if (i2vTipText && t.i2vTipText) i2vTipText.innerHTML = t.i2vTipText;
+
+  setPlaceholder('subject', t.subjectPlaceholder);
+  setPlaceholder('action', t.actionPlaceholder);
+  setPlaceholder('negative', t.negativePlaceholder);
+  setPlaceholder('shot2', t.shot2Placeholder);
+  setPlaceholder('shot3', t.shot3Placeholder);
+  setPlaceholder('imgRef', t.imgRefPlaceholder);
+  setPlaceholder('vidRef', t.vidRefPlaceholder);
+  setPlaceholder('audioRef', t.audioRefPlaceholder);
+
+  const applySelect = (id, map) => {
+    const sel = document.getElementById(id);
+    if (!sel || !map) return;
+    Array.from(sel.options).forEach((opt) => {
+      if (map[opt.value] !== undefined) opt.textContent = map[opt.value];
+    });
+  };
+
+  applySelect('sceneCategory', o.sceneCategory);
+  applySelect('camera', o.camera);
+  applySelect('mood', o.mood);
+  applySelect('duration', o.duration);
+  applySelect('quality', o.quality);
+  applySelect('outputLevel', o.outputLevel);
+
+  const chipMap = o.styleChips || optionI18n.en.styleChips;
+  document.querySelectorAll('#styleChips .chip').forEach((chip) => {
+    const k = chip.getAttribute('data-v');
+    if (chipMap && chipMap[k]) chip.textContent = chipMap[k];
+  });
+
+  setAuthUiState(authUser, authEnabled);
 }
 
 function initializeLanguage() {
