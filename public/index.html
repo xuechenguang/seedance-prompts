@@ -877,8 +877,8 @@ footer a:hover { color: var(--cyan); }
   <div class="formula-block">
     <span class="f-subject">[Subject]</span> + <span class="f-action">[Motion/Action]</span> + <span class="f-scene">[Background/Scene]</span> + <span class="f-camera">[Camera Movement]</span>
 
-For Multi-Shot: Add <span class="f-camera">"Shot switch."</span> between each scene description.
-For Seedance 2.0: Use <span class="f-subject">@Image1</span> <span class="f-action">@Video1</span> <span class="f-scene">@Audio1</span> to reference uploaded assets.
+<span id="formulaLine1">For Multi-Shot: Add <span class="f-camera">"Shot switch."</span> between each scene description.</span>
+<span id="formulaLine2">For Seedance 2.0: Use <span class="f-subject">@Image1</span> <span class="f-action">@Video1</span> <span class="f-scene">@Audio1</span> to reference uploaded assets.</span>
   </div>
 </div>
 
@@ -895,21 +895,21 @@ For Seedance 2.0: Use <span class="f-subject">@Image1</span> <span class="f-acti
   <p id="footerLine1">SeedanceTool.com — Free Seedance Prompt Generator for AI video creation</p>
   <p id="footerLine2" style="margin-top: 8px;">Not affiliated with ByteDance. Seedance is a trademark of ByteDance.</p>
   <p style="margin-top: 8px;">
-    <a href="#formula">Prompt Guide</a> · <a href="#templates">Templates</a> · <a href="#generator">Generator</a> · <a href="/pro.html">Pro</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a>
+    <a id="navPromptGuide" href="#formula">Prompt Guide</a> · <a id="navTemplates" href="#templates">Templates</a> · <a id="navGenerator" href="#generator">Generator</a> · <a id="navPro" href="/pro.html">Pro</a> · <a id="navPrivacy" href="/privacy.html">Privacy</a> · <a id="navTerms" href="/terms.html">Terms</a> · <a id="navContact" href="/contact.html">Contact</a>
   </p>
   <p class="landing-links">
-    <a href="/seedance-prompt-generator.html">Seedance Prompt Generator</a>
-    <a href="/seedance-image-to-video-prompt.html">Image to Video Prompt</a>
-    <a href="/seedance-cinematic-prompt-template.html">Cinematic Prompt Template</a>
-    <a href="/seedance-2-0-prompt-generator.html">Seedance 2.0 Prompt</a>
-    <a href="/seedance-prompt-template.html">Seedance Prompt Template</a>
-    <a href="/seedance-video-prompt-builder.html">Video Prompt Builder</a>
-    <a href="/seedance-text-to-video-prompt.html">Text to Video Prompt</a>
-    <a href="/seedance-ai-video-prompt.html">AI Video Prompt</a>
-    <a href="/seedance-camera-movement-prompts.html">Camera Prompt</a>
-    <a href="/seedance-multishot-prompt.html">Multi-Shot Prompt</a>
-    <a href="/seedance-prompt-examples.html">Prompt Examples</a>
-    <a href="/blog/">Seedance Blog</a>
+    <a id="link1" href="/seedance-prompt-generator.html">Seedance Prompt Generator</a>
+    <a id="link2" href="/seedance-image-to-video-prompt.html">Image to Video Prompt</a>
+    <a id="link3" href="/seedance-cinematic-prompt-template.html">Cinematic Prompt Template</a>
+    <a id="link4" href="/seedance-2-0-prompt-generator.html">Seedance 2.0 Prompt</a>
+    <a id="link5" href="/seedance-prompt-template.html">Seedance Prompt Template</a>
+    <a id="link6" href="/seedance-video-prompt-builder.html">Video Prompt Builder</a>
+    <a id="link7" href="/seedance-text-to-video-prompt.html">Text to Video Prompt</a>
+    <a id="link8" href="/seedance-ai-video-prompt.html">AI Video Prompt</a>
+    <a id="link9" href="/seedance-camera-movement-prompts.html">Camera Prompt</a>
+    <a id="link10" href="/seedance-multishot-prompt.html">Multi-Shot Prompt</a>
+    <a id="link11" href="/seedance-prompt-examples.html">Prompt Examples</a>
+    <a id="link12" href="/blog/">Seedance Blog</a>
   </p>
 </footer>
 
@@ -1229,47 +1229,126 @@ function updateSubjectHint() {
   document.getElementById('subject').placeholder = hints[cat] || hints.custom;
 }
 
-// CAMERA DESCRIPTIONS
-const cameraDescriptions = {
-  'fixed': 'Fixed camera',
-  'pan-left': 'The camera pans slowly to the left',
-  'pan-right': 'The camera pans slowly to the right',
-  'zoom-in': 'The camera gradually zooms in',
-  'zoom-out': 'The camera slowly zooms out to reveal the full scene',
-  'tracking': 'Tracking shot follows the subject smoothly',
-  'orbit': 'The camera orbits around the subject in a 360-degree arc',
-  'drone': 'Aerial drone shot soaring above the scene',
-  'handheld': 'Handheld camera with slight natural movement',
-  'dolly-zoom': 'Dolly zoom (Hitchcock effect) on the subject',
-  'crane': 'Crane shot rising upward to reveal the wider scene',
-  'follow': 'Follow shot moving alongside the subject'
+const promptLexicon = {
+  en: {
+    secMain: '[Main Prompt]',
+    secStoryboard: '[Storyboard]',
+    secCamera: '[Camera Direction]',
+    secNegative: '[Negative Prompt]',
+    secParams: '[Render Params]',
+    secRefs: '[Reference Mapping]',
+    secCons: '[Consistency Rule]',
+    shotPrefix: 'Shot',
+    notUsed: 'not used',
+    auto: 'auto',
+    duration: { '5s': '5 seconds', '10s': '10 seconds' },
+    quality: { '1080p': '1080p HD', '720p': '720p', '2k': '2K' },
+    camera: {
+      fixed: 'Static camera with locked framing',
+      'pan-left': 'Slow pan to the left',
+      'pan-right': 'Slow pan to the right',
+      'zoom-in': 'Gradual zoom-in toward the subject',
+      'zoom-out': 'Smooth zoom-out to reveal the full scene',
+      tracking: 'Tracking shot follows the subject smoothly',
+      orbit: '360-degree orbital move around the subject',
+      drone: 'Aerial drone move with controlled altitude',
+      handheld: 'Handheld movement with natural micro-shake',
+      'dolly-zoom': 'Dolly zoom effect for dramatic perspective shift',
+      crane: 'Crane rise revealing broader spatial context',
+      follow: 'Follow shot moving in sync with the subject'
+    },
+    style: {
+      photorealistic: 'Photorealistic image quality with clean texture detail',
+      cinematic: 'Cinematic film look with controlled contrast and depth',
+      anime: 'Anime rendering with expressive lines and vibrant palette',
+      cyberpunk: 'Cyberpunk visual language with neon contrast and urban glow',
+      watercolor: 'Watercolor texture with soft edges and fluid blending',
+      'felt-texture': 'Felt-texture handcrafted stop-motion aesthetic',
+      noir: 'Film noir style with high contrast and dramatic shadows',
+      illustration: 'Stylized digital illustration with clean line hierarchy',
+      '3d-render': 'High-quality 3D render with professional lighting'
+    },
+    mood: {
+      '': '',
+      'warm-golden': 'Golden-hour warmth with soft amber highlights',
+      'moody-dramatic': 'Moody dramatic atmosphere with deep contrast',
+      'bright-cheerful': 'Bright cheerful tone with lively color energy',
+      'cold-blue': 'Cold blue grading with restrained saturation',
+      'neon-glow': 'Neon glow accents with saturated edge lighting',
+      'soft-dreamy': 'Soft dreamy atmosphere with gentle bloom',
+      'dark-horror': 'Dark horror mood with tension-driven shadows',
+      'vintage-retro': 'Vintage retro tone with film-like texture'
+    },
+    negDefault: 'low resolution, blurry image, frame flicker, duplicated limbs, extra fingers, text watermark, logo, anatomy distortion',
+    negDefaultV2: 'visual drift, identity change, limb artifacts, text watermark, logo, frame jitter, temporal inconsistency',
+    cameraGuideFixed: 'Keep framing stable, subject centered by composition intent, and temporal continuity clean.',
+    cameraGuideMotion: 'Maintain physically plausible motion arcs, smooth acceleration/deceleration, and coherent motion blur.',
+    proDetail: 'Use clear subject-action-scene hierarchy, preserve identity consistency, and avoid semantic conflicts between shots.',
+    cineDetail: 'Use cinematic pacing, layered depth, motivated lighting transitions, and strong visual continuity across shots.',
+    consistencyV2: 'Maintain stable appearance, silhouette, wardrobe, and color language across all shots.'
+  },
+  zh: {
+    secMain: '[主提示词]',
+    secStoryboard: '[分镜脚本]',
+    secCamera: '[镜头指导]',
+    secNegative: '[负面提示词]',
+    secParams: '[渲染参数]',
+    secRefs: '[参考映射]',
+    secCons: '[一致性规则]',
+    shotPrefix: '镜头',
+    notUsed: '未使用',
+    auto: '自动',
+    duration: { '5s': '5秒', '10s': '10秒' },
+    quality: { '1080p': '1080p高清', '720p': '720p', '2k': '2K' },
+    camera: {
+      fixed: '固定机位，构图稳定',
+      'pan-left': '镜头缓慢向左平移',
+      'pan-right': '镜头缓慢向右平移',
+      'zoom-in': '镜头平滑推近主体',
+      'zoom-out': '镜头平滑拉远展示全景',
+      tracking: '跟拍镜头持续跟随主体运动',
+      orbit: '环绕镜头360度展示主体',
+      drone: '航拍镜头控制高度与速度',
+      handheld: '手持镜头带轻微自然抖动',
+      'dolly-zoom': '伸缩变焦形成戏剧化透视变化',
+      crane: '升降镜头向上揭示空间关系',
+      follow: '跟随镜头与主体同步移动'
+    },
+    style: {
+      photorealistic: '写实质感，细节清晰，材质真实',
+      cinematic: '电影感画面，层次分明，景深自然',
+      anime: '动漫风格，线条明确，色彩鲜明',
+      cyberpunk: '赛博朋克视觉，霓虹反差与未来都市氛围',
+      watercolor: '水彩质感，边缘柔和，色彩晕染自然',
+      'felt-texture': '毛毡手作停格质感，触感明显',
+      noir: '黑色电影风格，高反差与戏剧化阴影',
+      illustration: '数字插画风格，线条层级清晰',
+      '3d-render': '高质量3D渲染，灯光与体积感专业'
+    },
+    mood: {
+      '': '',
+      'warm-golden': '暖金色光线，氛围柔和',
+      'moody-dramatic': '阴郁戏剧氛围，明暗反差强',
+      'bright-cheerful': '明亮活泼，色彩饱和度较高',
+      'cold-blue': '冷蓝色调，画面克制',
+      'neon-glow': '霓虹边缘光强调空间层次',
+      'soft-dreamy': '柔和梦幻，整体光晕轻微',
+      'dark-horror': '黑暗惊悚氛围，阴影张力强',
+      'vintage-retro': '复古胶片质感，色调偏旧'
+    },
+    negDefault: '低清晰度、画面模糊、闪烁、肢体重复、多余手指、文字水印、Logo、解剖结构错误',
+    negDefaultV2: '视觉漂移、角色身份变化、肢体伪影、文字水印、Logo、帧抖动、时序不连续',
+    cameraGuideFixed: '保持稳定构图与干净时序，避免无意义抖动。',
+    cameraGuideMotion: '运动轨迹符合物理逻辑，速度变化平滑，运动模糊可控。',
+    proDetail: '确保主体-动作-场景层级清晰，角色外观与风格在全片一致，避免语义冲突。',
+    cineDetail: '强调电影化节奏、前中后景层次、动机化光线切换与跨镜头连续性。',
+    consistencyV2: '保持角色外形、轮廓、服装与色彩语言在所有镜头中稳定一致。'
+  }
 };
 
-// STYLE DESCRIPTIONS
-const styleDescriptions = {
-  'photorealistic': 'Photorealistic, shot on professional camera',
-  'cinematic': 'Cinematic quality, shot on 35mm film, shallow depth of field',
-  'anime': 'Anime style, vibrant colors, expressive character design',
-  'cyberpunk': 'Cyberpunk aesthetic, neon lights, futuristic cityscape',
-  'watercolor': 'Watercolor painting style, soft brushstrokes, flowing colors',
-  'felt-texture': 'Felt texture stop-motion style, handcrafted look',
-  'noir': 'Film noir style, high contrast black and white, dramatic shadows',
-  'illustration': 'Digital illustration style, clean lines, stylized proportions',
-  '3d-render': '3D render, clean lighting, professional CGI quality'
-};
-
-// MOOD DESCRIPTIONS
-const moodDescriptions = {
-  '': '',
-  'warm-golden': 'Warm golden hour lighting, soft amber tones',
-  'moody-dramatic': 'Moody dramatic lighting, deep shadows and high contrast',
-  'bright-cheerful': 'Bright and cheerful atmosphere, saturated colors',
-  'cold-blue': 'Cold blue tone, icy atmosphere, desaturated palette',
-  'neon-glow': 'Neon glow, vibrant purple and blue light effects',
-  'soft-dreamy': 'Soft dreamy atmosphere, ethereal glow, pastel tones',
-  'dark-horror': 'Dark horror atmosphere, eerie shadows, unsettling mood',
-  'vintage-retro': 'Vintage retro look, film grain, warm faded colors'
-};
+function getPromptLexicon() {
+  return currentLang === 'zh' ? promptLexicon.zh : promptLexicon.en;
+}
 
 // GENERATE
 function generatePrompt() {
@@ -1334,57 +1413,66 @@ function generatePrompt() {
 }
 
 function buildStandardPrompt(subject, action, negative, camera, mood, duration, quality, outputLevel, shot2, shot3) {
+  const lx = getPromptLexicon();
   let shotLines = [];
   let mainShot = subject;
 
-  if (action) mainShot += '. ' + capitalizeFirst(action);
-  if (mood && moodDescriptions[mood]) mainShot += '. ' + moodDescriptions[mood];
-  if (camera !== 'fixed') mainShot += '. ' + cameraDescriptions[camera];
+  if (action) mainShot += currentLang === 'zh' ? `。${action}` : `. ${capitalizeFirst(action)}`;
+  if (mood && lx.mood[mood]) mainShot += currentLang === 'zh' ? `。${lx.mood[mood]}` : `. ${lx.mood[mood]}`;
+  if (camera !== 'fixed' && lx.camera[camera]) mainShot += currentLang === 'zh' ? `。${lx.camera[camera]}` : `. ${lx.camera[camera]}`;
 
-  shotLines.push('Shot 1: ' + mainShot);
-  if (shot2) shotLines.push('Shot 2: ' + shot2);
-  if (shot3) shotLines.push('Shot 3: ' + shot3);
+  shotLines.push(`${lx.shotPrefix} 1${currentLang === 'zh' ? '：' : ':'} ${mainShot}`);
+  if (shot2) shotLines.push(`${lx.shotPrefix} 2${currentLang === 'zh' ? '：' : ':'} ${shot2}`);
+  if (shot3) shotLines.push(`${lx.shotPrefix} 3${currentLang === 'zh' ? '：' : ':'} ${shot3}`);
 
-  const mainPrompt = [mainShot, styleDescriptions[currentStyle], `Duration ${duration}`, `Quality ${quality}`]
-    .filter(Boolean)
-    .join('. ') + '.';
+  const styleLine = lx.style[currentStyle] || currentStyle;
+  const durationLine = lx.duration[duration] || duration;
+  const qualityLine = lx.quality[quality] || quality;
+  const mainPrompt = currentLang === 'zh'
+    ? `${mainShot}。${styleLine}。时长${durationLine}。画质${qualityLine}。`
+    : `${mainShot}. ${styleLine}. Duration ${durationLine}. Quality ${qualityLine}.`;
 
   const negativeLine = negative
-    ? negative
-    : 'low resolution, blurry, flicker, duplicated limbs, extra fingers, text watermark, logo, artifacting';
+    ? negative.trim()
+    : lx.negDefault;
 
   const cameraGuide = camera === 'fixed'
-    ? 'Static framing, stable composition, smooth temporal consistency.'
-    : `${cameraDescriptions[camera]}. Keep motion smooth and physically plausible.`;
+    ? lx.cameraGuideFixed
+    : `${lx.camera[camera] || ''}${currentLang === 'zh' ? '。' : '. '} ${lx.cameraGuideMotion}`.trim();
 
   if (outputLevel === 'fast') {
-    return `${mainPrompt} Negative prompt: ${negativeLine}.`;
+    return currentLang === 'zh'
+      ? `${mainPrompt}负面提示词：${negativeLine}。`
+      : `${mainPrompt} Negative prompt: ${negativeLine}.`;
   }
 
   const detailPack = outputLevel === 'cinematic'
-    ? 'Use cinematic composition, layered depth, realistic light falloff, clean motion blur, and coherent scene continuity.'
-    : 'Ensure clear subject-action-scene hierarchy with stable character and style consistency.';
+    ? lx.cineDetail
+    : lx.proDetail;
 
   return [
-    '[Main Prompt]',
+    lx.secMain,
     mainPrompt,
     '',
-    '[Storyboard]',
+    lx.secStoryboard,
     shotLines.join('\n'),
     '',
-    '[Camera Direction]',
+    lx.secCamera,
     cameraGuide,
     '',
-    '[Negative Prompt]',
-    negativeLine + '.',
+    lx.secNegative,
+    currentLang === 'zh' ? `${negativeLine}。` : `${negativeLine}.`,
     '',
-    '[Render Params]',
-    `style=${currentStyle}; mood=${mood || 'auto'}; duration=${duration}; quality=${quality}.`,
+    lx.secParams,
+    currentLang === 'zh'
+      ? `风格=${currentStyle}；氛围=${mood || lx.auto}；时长=${durationLine}；画质=${qualityLine}。`
+      : `style=${currentStyle}; mood=${mood || lx.auto}; duration=${durationLine}; quality=${qualityLine}.`,
     detailPack
   ].join('\n');
 }
 
 function buildV2Prompt(subject, action, negative, camera, mood, duration, quality, outputLevel, shot2, shot3) {
+  const lx = getPromptLexicon();
   const imgRef = document.getElementById('imgRef').value.trim();
   const vidRef = document.getElementById('vidRef').value.trim();
   const audioRef = document.getElementById('audioRef').value.trim();
@@ -1393,50 +1481,59 @@ function buildV2Prompt(subject, action, negative, camera, mood, duration, qualit
   
   // Reference declarations
   let refs = [];
-  if (imgRef) refs.push(`Use @Image1 as reference for ${imgRef}`);
-  if (vidRef) refs.push(`Reference @Video1's ${vidRef}`);
-  if (audioRef) refs.push(`Background audio references @Audio1's ${audioRef}`);
+  if (imgRef) refs.push(currentLang === 'zh' ? `使用 @Image1 参考${imgRef}` : `Use @Image1 as reference for ${imgRef}`);
+  if (vidRef) refs.push(currentLang === 'zh' ? `使用 @Video1 参考${vidRef}` : `Reference @Video1's ${vidRef}`);
+  if (audioRef) refs.push(currentLang === 'zh' ? `使用 @Audio1 参考${audioRef}` : `Background audio references @Audio1's ${audioRef}`);
   
   if (refs.length > 0) {
-    parts.push(refs.join('. ') + '.');
+    parts.push(currentLang === 'zh' ? `${refs.join('。')}。` : `${refs.join('. ')}.`);
   }
   
   // Main content
   let mainShot = subject;
-  if (action) mainShot += '. ' + capitalizeFirst(action);
-  if (mood && moodDescriptions[mood]) mainShot += '. ' + moodDescriptions[mood];
-  if (camera !== 'fixed') mainShot += '. ' + cameraDescriptions[camera];
+  if (action) mainShot += currentLang === 'zh' ? `。${action}` : `. ${capitalizeFirst(action)}`;
+  if (mood && lx.mood[mood]) mainShot += currentLang === 'zh' ? `。${lx.mood[mood]}` : `. ${lx.mood[mood]}`;
+  if (camera !== 'fixed' && lx.camera[camera]) mainShot += currentLang === 'zh' ? `。${lx.camera[camera]}` : `. ${lx.camera[camera]}`;
   parts.push(mainShot);
   
-  if (shot2) parts.push('Shot switch. ' + shot2);
-  if (shot3) parts.push('Shot switch. ' + shot3);
+  if (shot2) parts.push(currentLang === 'zh' ? `镜头切换。${shot2}` : `Shot switch. ${shot2}`);
+  if (shot3) parts.push(currentLang === 'zh' ? `镜头切换。${shot3}` : `Shot switch. ${shot3}`);
   
-  const core = parts.join(' ') + '. ' + styleDescriptions[currentStyle] + '.';
+  const styleLine = lx.style[currentStyle] || currentStyle;
+  const durationLine = lx.duration[duration] || duration;
+  const qualityLine = lx.quality[quality] || quality;
+  const core = currentLang === 'zh'
+    ? `${parts.join(' ')}。${styleLine}。`
+    : `${parts.join(' ')}. ${styleLine}.`;
   const negativeLine = negative
-    ? negative
-    : 'no visual drift, no identity change, no extra limbs, no text watermark, no logo, no frame jitter';
+    ? negative.trim()
+    : lx.negDefaultV2;
 
   if (outputLevel === 'fast') {
-    return `${core} Duration ${duration}. Quality ${quality}. Negative prompt: ${negativeLine}.`;
+    return currentLang === 'zh'
+      ? `${core}时长${durationLine}。画质${qualityLine}。负面提示词：${negativeLine}。`
+      : `${core} Duration ${durationLine}. Quality ${qualityLine}. Negative prompt: ${negativeLine}.`;
   }
 
   const detailPack = outputLevel === 'cinematic'
-    ? 'Prioritize cinematic pacing, coherent reference transfer, realistic motion arcs, and seamless shot transitions.'
-    : 'Maintain consistent character appearance and visual style across all shots.';
+    ? lx.cineDetail
+    : lx.consistencyV2;
 
   return [
-    '[Main Prompt]',
-    `${core} Duration ${duration}. Quality ${quality}.`,
+    lx.secMain,
+    currentLang === 'zh'
+      ? `${core}时长${durationLine}。画质${qualityLine}。`
+      : `${core} Duration ${durationLine}. Quality ${qualityLine}.`,
     '',
-    '[Reference Mapping]',
-    imgRef ? `@Image1 => ${imgRef}` : '@Image1 => not used',
-    vidRef ? `@Video1 => ${vidRef}` : '@Video1 => not used',
-    audioRef ? `@Audio1 => ${audioRef}` : '@Audio1 => not used',
+    lx.secRefs,
+    imgRef ? `@Image1 => ${imgRef}` : `@Image1 => ${lx.notUsed}`,
+    vidRef ? `@Video1 => ${vidRef}` : `@Video1 => ${lx.notUsed}`,
+    audioRef ? `@Audio1 => ${audioRef}` : `@Audio1 => ${lx.notUsed}`,
     '',
-    '[Negative Prompt]',
-    negativeLine + '.',
+    lx.secNegative,
+    currentLang === 'zh' ? `${negativeLine}。` : `${negativeLine}.`,
     '',
-    '[Consistency Rule]',
+    lx.secCons,
     detailPack
   ].join('\n');
 }
@@ -1658,8 +1755,12 @@ function generateBatch() {
     const prompt = buildStandardPrompt(
       document.getElementById('subject').value.trim(),
       document.getElementById('action').value.trim(),
+      document.getElementById('negative').value.trim(),
       document.getElementById('camera').value,
       document.getElementById('mood').value,
+      document.getElementById('duration').value,
+      document.getElementById('quality').value,
+      document.getElementById('outputLevel').value,
       document.getElementById('shot2').value.trim(),
       document.getElementById('shot3').value.trim()
     );
@@ -1697,13 +1798,21 @@ function generateBatch() {
 // AI OPTIMIZER
 function polishPrompt() {
   if (!generatedPrompt) return;
-  const polishPack = [
-    'Keep temporal consistency frame-to-frame',
-    'Preserve facial identity and wardrobe continuity',
-    'Use physically plausible motion and lighting behavior',
-    'Avoid over-stylization that breaks subject realism'
-  ].join('. ') + '.';
-  generatedPrompt += '\n\n[Pro Polish]\n' + polishPack;
+  const isZh = currentLang === 'zh';
+  const polishPack = isZh
+    ? [
+      '保持逐帧时序连续，避免运动跳变',
+      '保持角色脸部识别点与服装细节稳定一致',
+      '运动与光照变化符合物理逻辑',
+      '避免过度风格化导致主体失真'
+    ].join('。') + '。'
+    : [
+      'Keep temporal consistency frame-to-frame',
+      'Preserve facial identity and wardrobe continuity',
+      'Use physically plausible motion and lighting behavior',
+      'Avoid over-stylization that breaks subject realism'
+    ].join('. ') + '.';
+  generatedPrompt += `\n\n${isZh ? '[专业润色]' : '[Pro Polish]'}\n` + polishPack;
 
   const outputText = document.getElementById('outputText');
   let highlighted = generatedPrompt
@@ -1712,7 +1821,7 @@ function polishPrompt() {
     .replace(/(camera [^,.]+|tracking shot|aerial|drone shot|orbit|zoom[^,.]*|pan[^,.]*|dolly zoom|crane shot|follow shot|handheld)/gi, '<span class="camera">$&</span>');
 
   outputText.innerHTML = highlighted;
-  showToast('🎯 Prompt polished for production use');
+  showToast(isZh ? '🎯 已完成专业润色' : '🎯 Prompt polished for production use');
 }
 
 function exportPromptPack() {
@@ -1871,7 +1980,28 @@ const translations = {
     authSetup: "Auth Setup Needed",
     authConfigBtn: "Config Firebase",
     authLogin: "Google Login",
-    authLogout: "Logout"
+    authLogout: "Logout",
+    formulaLine1: "For Multi-Shot: Add <span class=\"f-camera\">\"Shot switch.\"</span> between each scene description.",
+    formulaLine2: "For Seedance 2.0: Use <span class=\"f-subject\">@Image1</span> <span class=\"f-action\">@Video1</span> <span class=\"f-scene\">@Audio1</span> to reference uploaded assets.",
+    navPromptGuide: "Prompt Guide",
+    navTemplates: "Templates",
+    navGenerator: "Generator",
+    navPro: "Pro",
+    navPrivacy: "Privacy",
+    navTerms: "Terms",
+    navContact: "Contact",
+    link1: "Seedance Prompt Generator",
+    link2: "Image to Video Prompt",
+    link3: "Cinematic Prompt Template",
+    link4: "Seedance 2.0 Prompt",
+    link5: "Seedance Prompt Template",
+    link6: "Video Prompt Builder",
+    link7: "Text to Video Prompt",
+    link8: "AI Video Prompt",
+    link9: "Camera Prompt",
+    link10: "Multi-Shot Prompt",
+    link11: "Prompt Examples",
+    link12: "Seedance Blog"
   },
   zh: {
     title: "Seedance 提示词生成器",
@@ -1932,7 +2062,28 @@ const translations = {
     authSetup: "需配置登录",
     authConfigBtn: "配置 Firebase",
     authLogin: "Google 登录",
-    authLogout: "退出登录"
+    authLogout: "退出登录",
+    formulaLine1: "多镜头：在每段场景之间加入 <span class=\"f-camera\">“Shot switch.”</span>。",
+    formulaLine2: "Seedance 2.0：使用 <span class=\"f-subject\">@Image1</span> <span class=\"f-action\">@Video1</span> <span class=\"f-scene\">@Audio1</span> 引用已上传素材。",
+    navPromptGuide: "提示词指南",
+    navTemplates: "模板",
+    navGenerator: "生成器",
+    navPro: "专业版",
+    navPrivacy: "隐私",
+    navTerms: "条款",
+    navContact: "联系",
+    link1: "Seedance 提示词生成器",
+    link2: "图生视频提示词",
+    link3: "电影感模板",
+    link4: "Seedance 2.0 提示词",
+    link5: "提示词模板",
+    link6: "视频提示词构建器",
+    link7: "文生视频提示词",
+    link8: "AI 视频提示词",
+    link9: "镜头提示词",
+    link10: "多镜头提示词",
+    link11: "提示词示例",
+    link12: "Seedance 博客"
   },
   ja: {
     title: "Seedanceプロンプトジェネレーター",
@@ -1993,7 +2144,28 @@ const translations = {
     authSetup: "認証設定が必要",
     authConfigBtn: "Firebaseを設定",
     authLogin: "Google ログイン",
-    authLogout: "ログアウト"
+    authLogout: "ログアウト",
+    formulaLine1: "マルチショット: 各シーン間に <span class=\"f-camera\">\"Shot switch.\"</span> を追加します。",
+    formulaLine2: "Seedance 2.0: <span class=\"f-subject\">@Image1</span> <span class=\"f-action\">@Video1</span> <span class=\"f-scene\">@Audio1</span> で参照素材を指定します。",
+    navPromptGuide: "プロンプトガイド",
+    navTemplates: "テンプレート",
+    navGenerator: "ジェネレーター",
+    navPro: "Pro",
+    navPrivacy: "プライバシー",
+    navTerms: "利用規約",
+    navContact: "お問い合わせ",
+    link1: "Seedance プロンプト生成",
+    link2: "画像→動画プロンプト",
+    link3: "シネマテンプレート",
+    link4: "Seedance 2.0 プロンプト",
+    link5: "プロンプトテンプレート",
+    link6: "動画プロンプトビルダー",
+    link7: "テキスト→動画プロンプト",
+    link8: "AI動画プロンプト",
+    link9: "カメラプロンプト",
+    link10: "マルチショットプロンプト",
+    link11: "プロンプト例",
+    link12: "Seedance ブログ"
   },
   ko: {
     title: "Seedance 프롬프트 생성기",
@@ -2278,17 +2450,27 @@ const optionI18n = {
   }
 };
 
-let currentLang = localStorage.getItem('seedance_language') || 'en';
+function normalizeLang(raw) {
+  if (!raw) return 'en';
+  const v = String(raw).toLowerCase();
+  if (v.startsWith('zh')) return 'zh';
+  if (v.startsWith('ja')) return 'ja';
+  if (v.startsWith('ko')) return 'ko';
+  if (v.startsWith('fr')) return 'fr';
+  return 'en';
+}
+
+let currentLang = normalizeLang(localStorage.getItem('seedance_language') || navigator.language || 'en');
 
 function changeLanguage() {
-  currentLang = document.getElementById('languageSelector').value;
+  currentLang = normalizeLang(document.getElementById('languageSelector').value);
   localStorage.setItem('seedance_language', currentLang);
   updateLanguage();
   trackEvent('switch_language', { language: currentLang });
 }
 
 function updateLanguage() {
-  const t = translations[currentLang];
+  const t = translations[currentLang] || translations.en;
   const o = optionI18n[currentLang] || optionI18n.en;
 
   // Update HTML lang attribute
@@ -2314,6 +2496,7 @@ function updateLanguage() {
     const el = document.getElementById(id);
     if (el && val) el.textContent = val;
   };
+  const tr = (k) => t[k] || translations.en[k];
   const setPlaceholder = (id, val) => {
     const el = document.getElementById(id);
     if (el && val) el.placeholder = val;
@@ -2362,9 +2545,32 @@ function updateLanguage() {
   setText('templatesDesc', t.templatesDesc);
   setText('footerLine1', t.footerLine1);
   setText('footerLine2', t.footerLine2);
+  setText('navPromptGuide', tr('navPromptGuide'));
+  setText('navTemplates', tr('navTemplates'));
+  setText('navGenerator', tr('navGenerator'));
+  setText('navPro', tr('navPro'));
+  setText('navPrivacy', tr('navPrivacy'));
+  setText('navTerms', tr('navTerms'));
+  setText('navContact', tr('navContact'));
+  setText('link1', tr('link1'));
+  setText('link2', tr('link2'));
+  setText('link3', tr('link3'));
+  setText('link4', tr('link4'));
+  setText('link5', tr('link5'));
+  setText('link6', tr('link6'));
+  setText('link7', tr('link7'));
+  setText('link8', tr('link8'));
+  setText('link9', tr('link9'));
+  setText('link10', tr('link10'));
+  setText('link11', tr('link11'));
+  setText('link12', tr('link12'));
 
   const i2vTipText = document.getElementById('i2vTipText');
   if (i2vTipText && t.i2vTipText) i2vTipText.innerHTML = t.i2vTipText;
+  const formulaLine1 = document.getElementById('formulaLine1');
+  const formulaLine2 = document.getElementById('formulaLine2');
+  if (formulaLine1 && tr('formulaLine1')) formulaLine1.innerHTML = tr('formulaLine1');
+  if (formulaLine2 && tr('formulaLine2')) formulaLine2.innerHTML = tr('formulaLine2');
 
   setPlaceholder('subject', t.subjectPlaceholder);
   setPlaceholder('action', t.actionPlaceholder);
@@ -2400,7 +2606,9 @@ function updateLanguage() {
 }
 
 function initializeLanguage() {
-  document.getElementById('languageSelector').value = currentLang;
+  const normalized = normalizeLang(currentLang);
+  currentLang = normalized;
+  document.getElementById('languageSelector').value = normalized;
   updateLanguage();
 }
 
