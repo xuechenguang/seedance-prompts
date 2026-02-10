@@ -664,6 +664,11 @@ footer a:hover { color: var(--cyan); }
   <button class="mode-tab" id="tabI2V" onclick="setMode('i2v', this)">🖼️ Image → Video</button>
   <button class="mode-tab" id="tabV2Ref" onclick="setMode('v2ref', this)">🎬 2.0 Multi-Modal</button>
 </div>
+<div style="text-align:center; margin-top: 10px;">
+  <a href="/seedance-channel.html" style="display:inline-block; padding:8px 14px; border:1px solid var(--border); border-radius:999px; color:var(--text-secondary); font-size:12px; text-decoration:none;">
+    🔎 Explore Seedance Channel (All Keyword Pages)
+  </a>
+</div>
 
 <!-- MAIN BUILDER -->
 <div class="main-grid animate-in delay-2" id="generator">
@@ -910,6 +915,7 @@ footer a:hover { color: var(--cyan); }
     <a id="link10" href="/seedance-multishot-prompt.html">Multi-Shot Prompt</a>
     <a id="link11" href="/seedance-prompt-examples.html">Prompt Examples</a>
     <a id="link12" href="/blog/">Seedance Blog</a>
+    <a id="link13" href="/seedance-channel.html">Seedance Channel Hub</a>
   </p>
 </footer>
 
@@ -2001,7 +2007,8 @@ const translations = {
     link9: "Camera Prompt",
     link10: "Multi-Shot Prompt",
     link11: "Prompt Examples",
-    link12: "Seedance Blog"
+    link12: "Seedance Blog",
+    link13: "Seedance Channel Hub"
   },
   zh: {
     title: "Seedance 提示词生成器",
@@ -2083,7 +2090,8 @@ const translations = {
     link9: "镜头提示词",
     link10: "多镜头提示词",
     link11: "提示词示例",
-    link12: "Seedance 博客"
+    link12: "Seedance 博客",
+    link13: "Seedance 频道聚合页"
   },
   ja: {
     title: "Seedanceプロンプトジェネレーター",
@@ -2165,7 +2173,8 @@ const translations = {
     link9: "カメラプロンプト",
     link10: "マルチショットプロンプト",
     link11: "プロンプト例",
-    link12: "Seedance ブログ"
+    link12: "Seedance ブログ",
+    link13: "Seedance チャンネルハブ"
   },
   ko: {
     title: "Seedance 프롬프트 생성기",
@@ -2564,6 +2573,7 @@ function updateLanguage() {
   setText('link10', tr('link10'));
   setText('link11', tr('link11'));
   setText('link12', tr('link12'));
+  setText('link13', tr('link13'));
 
   const i2vTipText = document.getElementById('i2vTipText');
   if (i2vTipText && t.i2vTipText) i2vTipText.innerHTML = t.i2vTipText;
