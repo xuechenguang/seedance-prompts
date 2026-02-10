@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlLang">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seedance Prompt Generator — Free AI Video Prompt Builder | SeedanceTool</title>
-<meta name="description" content="Free Seedance prompt generator tool. Create optimized prompts for Seedance 2.0, 1.5 Pro & 1.0. Generate text-to-video and image-to-video prompts with camera movements, multi-shot narratives, and scene templates.">
-<meta name="keywords" content="seedance prompt generator, seedance 2.0 prompts, seedance prompt builder, seedance prompt templates, seedance video prompt maker, ai video prompt generator, seedance camera movement prompts, seedance multi-shot prompts">
+<title>Seedance Prompt Generator — Free AI Video Prompt Builder Tool for 2.0 | SeedanceTool</title>
+<meta name="description" content="#1 Free Seedance prompt generator tool. Create optimized AI video prompts for Seedance 2.0, 1.5 Pro & 1.0. Generate text-to-video and image-to-video prompts with camera movements, multi-shot narratives, and scene templates. No signup required.">
+<meta name="keywords" content="seedance prompt generator, AI video prompt tool, text to video prompt creator, seedance AI prompts, free video prompt generator, seedance 2.0 prompts, seedance prompt builder, image to video prompts, seedance prompt templates, AI video generator prompts, seedance camera movement prompts, multi-shot video prompts">
 <meta property="og:title" content="Seedance Prompt Generator — Free AI Video Prompt Builder">
-<meta property="og:description" content="Generate optimized prompts for Seedance 2.0 AI video. Free tool with templates, camera controls, multi-shot narratives.">
+<meta property="og:description" content="#1 Free Seedance prompt generator. Create optimized AI video prompts for Seedance 2.0, 1.5 Pro & 1.0. Templates, camera controls, multi-shot narratives. No signup required.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://seedancetool.com/">
 <link rel="canonical" href="https://seedancetool.com/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="SeedanceTool">
+<meta property="og:image" content="https://seedancetool.com/og-image.png">
+<meta property="og:image:alt" content="Seedance Prompt Generator Tool Interface">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Seedance Prompt Generator — Free AI Video Prompt Builder">
+<meta name="twitter:description" content="#1 Free tool to create optimized AI video prompts for Seedance 2.0">
+<meta name="twitter:image" content="https://seedancetool.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236c5ce7'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white'%3E⚡%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -581,8 +589,33 @@ footer a:hover { color: var(--cyan); }
     <div class="logo-icon">⚡</div>
     <div class="logo-text">Seedance<span>Tool</span></div>
   </div>
+
+  <!-- TOP BAR -->
+  <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 15px; align-items: center;">
+    <!-- USER SECTION -->
+    <div id="userSection" style="display: none;">
+      <span style="color: var(--text-secondary); font-size: 12px;">Welcome, <span id="username"></span></span>
+      <button onclick="showUserDashboard()" style="margin-left: 10px; padding: 4px 8px; background: var(--accent); color: white; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">📊 Dashboard</button>
+      <button onclick="logout()" style="margin-left: 5px; padding: 4px 8px; background: var(--text-dim); color: white; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">Logout</button>
+    </div>
+
+    <!-- LOGIN SECTION -->
+    <div id="loginSection">
+      <button onclick="showLogin()" style="padding: 6px 12px; background: transparent; border: 1px solid var(--border); color: var(--text-primary); border-radius: 6px; font-size: 12px; cursor: pointer; margin-right: 8px;">Login</button>
+      <button onclick="showRegister()" style="padding: 6px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">Sign Up</button>
+    </div>
+
+    <!-- LANGUAGE SELECTOR -->
+    <select id="languageSelector" onchange="changeLanguage()" style="padding: 6px 10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; color: var(--text-primary); font-size: 12px;">
+      <option value="en">🇺🇸 English</option>
+      <option value="zh">🇨🇳 中文</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="ko">🇰🇷 한국어</option>
+      <option value="fr">🇫🇷 Français</option>
+    </select>
+  </div>
   <h1>Seedance Prompt Generator</h1>
-  <p class="subtitle">Create optimized prompts for Seedance AI video generation. Select your scene, style, and camera — get a ready-to-use prompt in seconds.</p>
+  <p class="subtitle">The #1 free AI video prompt generator for Seedance. Create optimized text-to-video and image-to-video prompts for Seedance 2.0, 1.5 Pro & 1.0. Select your scene, style, and camera movement — get professional AI video prompts in seconds.</p>
   <div class="badge-row">
     <span class="badge badge-new">🔥 Seedance 2.0 Ready</span>
     <span class="badge badge-free">✓ 100% Free</span>
@@ -756,9 +789,17 @@ footer a:hover { color: var(--cyan); }
 
   <!-- GENERATE BUTTON -->
   <div style="grid-column: 1 / -1;">
-    <button class="btn btn-generate" onclick="generatePrompt()">
-      ⚡ Generate Seedance Prompt
-    </button>
+    <div style="display: flex; gap: 10px; align-items: center;">
+      <button class="btn btn-generate" style="flex: 1;" onclick="generatePrompt()">
+        ⚡ Generate Seedance Prompt
+      </button>
+      <button class="btn btn-secondary" onclick="showBatchMode()">
+        📊 Batch Mode
+      </button>
+      <button class="btn btn-secondary" onclick="showFavorites()">
+        ❤️ Favorites (<span id="favCount">0</span>)
+      </button>
+    </div>
   </div>
 
   <!-- OUTPUT -->
@@ -770,6 +811,8 @@ footer a:hover { color: var(--cyan); }
         <button class="btn btn-primary" onclick="copyPrompt()">📋 Copy Prompt</button>
         <button class="btn btn-secondary" onclick="regenerateVariation()">🔄 Variation</button>
         <button class="btn btn-secondary" onclick="enhancePrompt()">✨ Enhance</button>
+        <button class="btn btn-secondary" onclick="optimizeWithAI()">🤖 AI Optimize</button>
+        <button class="btn btn-secondary" onclick="addToFavorites()">❤️ Save</button>
       </div>
     </div>
   </div>
@@ -989,6 +1032,9 @@ function generatePrompt() {
   outputText.innerHTML = highlighted;
   outputArea.style.display = 'block';
   outputArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+  // Track user activity
+  trackPromptGeneration();
 }
 
 function buildStandardPrompt(subject, action, camera, mood, shot2, shot3) {
@@ -1112,8 +1158,725 @@ function enhancePrompt() {
   outputText.innerHTML = highlighted;
 }
 
+// FAVORITES SYSTEM
+let favorites = JSON.parse(localStorage.getItem('seedance_favorites') || '[]');
+
+function addToFavorites() {
+  if (!generatedPrompt) return;
+
+  const favorite = {
+    id: Date.now(),
+    prompt: generatedPrompt,
+    subject: document.getElementById('subject').value,
+    style: currentStyle,
+    camera: document.getElementById('camera').value,
+    createdAt: new Date().toISOString()
+  };
+
+  favorites.unshift(favorite);
+  if (favorites.length > 50) favorites = favorites.slice(0, 50); // Keep only 50 favorites
+
+  localStorage.setItem('seedance_favorites', JSON.stringify(favorites));
+  updateFavoritesCount();
+  showToast('💾 Added to favorites!');
+}
+
+function updateFavoritesCount() {
+  document.getElementById('favCount').textContent = favorites.length;
+}
+
+function showFavorites() {
+  const modal = createModal('❤️ Your Saved Prompts', generateFavoritesHTML(), 'large');
+  document.body.appendChild(modal);
+}
+
+function generateFavoritesHTML() {
+  if (favorites.length === 0) {
+    return '<p style="text-align: center; color: var(--text-dim); padding: 40px;">No saved prompts yet. Generate and save some prompts first!</p>';
+  }
+
+  return `
+    <div style="max-height: 400px; overflow-y: auto;">
+      ${favorites.map((fav, i) => `
+        <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 10px; background: var(--bg-secondary);">
+          <div style="display: flex; justify-content: between; align-items: start; gap: 10px;">
+            <div style="flex: 1;">
+              <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 6px;">
+                ${new Date(fav.createdAt).toLocaleDateString()} • ${fav.style} • ${fav.camera}
+              </div>
+              <div style="font-family: 'Space Mono', monospace; font-size: 12px; line-height: 1.5; color: var(--text-primary);">
+                ${fav.prompt.substring(0, 200)}${fav.prompt.length > 200 ? '...' : ''}
+              </div>
+            </div>
+            <div style="display: flex; gap: 5px;">
+              <button onclick="loadFavorite(${i})" style="padding: 4px 8px; font-size: 10px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer;">Use</button>
+              <button onclick="deleteFavorite(${i})" style="padding: 4px 8px; font-size: 10px; background: var(--pink); color: white; border: none; border-radius: 4px; cursor: pointer;">×</button>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function loadFavorite(index) {
+  const fav = favorites[index];
+  document.getElementById('subject').value = fav.subject;
+
+  // Set style
+  document.querySelectorAll('#styleChips .chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.v === fav.style);
+  });
+  currentStyle = fav.style;
+
+  document.getElementById('camera').value = fav.camera;
+
+  closeModal();
+  generatePrompt();
+}
+
+function deleteFavorite(index) {
+  favorites.splice(index, 1);
+  localStorage.setItem('seedance_favorites', JSON.stringify(favorites));
+  updateFavoritesCount();
+  showFavorites(); // Refresh the modal
+}
+
+// BATCH MODE
+function showBatchMode() {
+  const modal = createModal('📊 Batch Generation Mode', generateBatchHTML(), 'large');
+  document.body.appendChild(modal);
+}
+
+function generateBatchHTML() {
+  return `
+    <div>
+      <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">
+        Generate multiple prompt variations at once. Perfect for exploring different creative directions or A/B testing your video concepts.
+      </p>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">Number of Variations</label>
+        <select id="batchCount" style="width: 100%; padding: 8px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);">
+          <option value="3">3 variations</option>
+          <option value="5" selected>5 variations</option>
+          <option value="8">8 variations</option>
+          <option value="10">10 variations</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px;">Variation Type</label>
+        <select id="variationType" style="width: 100%; padding: 8px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);">
+          <option value="camera">Camera movements</option>
+          <option value="style">Visual styles</option>
+          <option value="mood">Moods & atmosphere</option>
+          <option value="mixed" selected>Mixed variations</option>
+        </select>
+      </div>
+
+      <button onclick="generateBatch()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--accent), #8b7cf7); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer;">
+        ⚡ Generate Batch
+      </button>
+
+      <div id="batchResults" style="margin-top: 20px;"></div>
+    </div>
+  `;
+}
+
+function generateBatch() {
+  const count = parseInt(document.getElementById('batchCount').value);
+  const type = document.getElementById('variationType').value;
+
+  const subject = document.getElementById('subject').value.trim();
+  if (!subject) {
+    showToast('❌ Please enter a subject description first!');
+    return;
+  }
+
+  const results = [];
+  const originalCamera = document.getElementById('camera').value;
+  const originalStyle = currentStyle;
+  const originalMood = document.getElementById('mood').value;
+
+  for (let i = 0; i < count; i++) {
+    // Vary parameters based on type
+    if (type === 'camera' || type === 'mixed') {
+      const cameras = ['pan-left', 'pan-right', 'zoom-in', 'zoom-out', 'tracking', 'orbit', 'drone', 'handheld'];
+      document.getElementById('camera').value = cameras[i % cameras.length];
+    }
+
+    if (type === 'style' || type === 'mixed') {
+      const styles = ['photorealistic', 'cinematic', 'anime', 'cyberpunk', 'watercolor', 'felt-texture'];
+      currentStyle = styles[i % styles.length];
+    }
+
+    if (type === 'mood' || type === 'mixed') {
+      const moods = ['warm-golden', 'moody-dramatic', 'bright-cheerful', 'cold-blue', 'neon-glow'];
+      document.getElementById('mood').value = moods[i % moods.length];
+    }
+
+    // Generate prompt
+    const prompt = buildStandardPrompt(
+      document.getElementById('subject').value.trim(),
+      document.getElementById('action').value.trim(),
+      document.getElementById('camera').value,
+      document.getElementById('mood').value,
+      document.getElementById('shot2').value.trim(),
+      document.getElementById('shot3').value.trim()
+    );
+
+    results.push({
+      prompt,
+      camera: document.getElementById('camera').value,
+      style: currentStyle,
+      mood: document.getElementById('mood').value
+    });
+  }
+
+  // Restore original values
+  document.getElementById('camera').value = originalCamera;
+  currentStyle = originalStyle;
+  document.getElementById('mood').value = originalMood;
+
+  // Display results
+  document.getElementById('batchResults').innerHTML = `
+    <h4 style="margin-bottom: 16px; color: var(--text-primary);">Generated ${count} Variations:</h4>
+    ${results.map((r, i) => `
+      <div style="border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 10px; background: var(--bg-primary);">
+        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 12px; color: var(--text-dim);">Variation ${i + 1}: ${r.style} • ${r.camera} • ${r.mood}</span>
+          <button onclick="copyText('${r.prompt.replace(/'/g, "\\'")}'); showToast('📋 Copied variation ${i + 1}!')" style="padding: 4px 8px; font-size: 10px; background: var(--cyan); color: black; border: none; border-radius: 4px; cursor: pointer;">Copy</button>
+        </div>
+        <div style="font-family: 'Space Mono', monospace; font-size: 11px; line-height: 1.5; color: var(--text-primary);">
+          ${r.prompt}
+        </div>
+      </div>
+    `).join('')}
+  `;
+}
+
+// AI OPTIMIZER
+function optimizeWithAI() {
+  if (!generatedPrompt) return;
+
+  showToast('🤖 AI optimization coming soon! This feature will analyze and improve your prompts.');
+
+  // For now, add some smart enhancements
+  const aiEnhancements = [
+    'Professional lighting with three-point setup',
+    'Cinematic color grading with teal and orange palette',
+    'Ultra-detailed textures and materials',
+    'Award-winning composition following rule of thirds',
+    'Smooth camera movements with stabilization',
+    'Dynamic range optimization for HDR quality',
+    'Depth of field for cinematic focus',
+    'Professional sound design consideration'
+  ];
+
+  const selectedEnhancements = aiEnhancements
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3)
+    .join('. ');
+
+  generatedPrompt += '. ' + selectedEnhancements;
+
+  const outputText = document.getElementById('outputText');
+  let highlighted = generatedPrompt
+    .replace(/@(Image\d|Video\d|Audio\d)/g, '<span class="highlight">@$1</span>')
+    .replace(/(Shot switch\.)/g, '<span class="camera">$1</span>')
+    .replace(/(camera [^,.]+|tracking shot|aerial|drone shot|orbit|zoom[^,.]*|pan[^,.]*|dolly zoom|crane shot|follow shot|handheld)/gi, '<span class="camera">$&</span>');
+
+  outputText.innerHTML = highlighted;
+}
+
+// MODAL SYSTEM
+function createModal(title, content, size = 'medium') {
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.8); z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  `;
+
+  const width = size === 'large' ? '800px' : '600px';
+
+  modal.innerHTML = `
+    <div style="
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); max-width: ${width}; width: 100%;
+      max-height: 90vh; overflow: hidden;
+    ">
+      <div style="
+        padding: 20px; border-bottom: 1px solid var(--border);
+        display: flex; justify-content: between; align-items: center;
+      ">
+        <h3 style="margin: 0; color: var(--text-primary);">${title}</h3>
+        <button onclick="closeModal()" style="
+          background: none; border: none; color: var(--text-dim);
+          font-size: 20px; cursor: pointer; padding: 0; width: 30px; height: 30px;
+        ">×</button>
+      </div>
+      <div style="padding: 20px; overflow-y: auto; max-height: calc(90vh - 100px);">
+        ${content}
+      </div>
+    </div>
+  `;
+
+  modal.onclick = (e) => {
+    if (e.target === modal) closeModal();
+  };
+
+  return modal;
+}
+
+function closeModal() {
+  const modal = document.querySelector('[style*="position: fixed"][style*="z-index: 9999"]');
+  if (modal) modal.remove();
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+}
+
+function showToast(message) {
+  const toast = document.getElementById('copiedToast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// MULTI-LANGUAGE SUPPORT
+const translations = {
+  en: {
+    title: "Seedance Prompt Generator",
+    subtitle: "The #1 free AI video prompt generator for Seedance. Create optimized text-to-video and image-to-video prompts for Seedance 2.0, 1.5 Pro & 1.0. Select your scene, style, and camera movement — get professional AI video prompts in seconds.",
+    badgeReady: "🔥 Seedance 2.0 Ready",
+    badgeFree: "✓ 100% Free",
+    badgeSupports: "Supports 1.0 / 1.5 / 2.0",
+    tabT2V: "📝 Text → Video",
+    tabI2V: "🖼️ Image → Video",
+    tabV2Ref: "🎬 2.0 Multi-Modal",
+    subjectAction: "Subject & Action",
+    sceneCategory: "Scene Category",
+    subjectDesc: "Subject Description",
+    actionMotion: "Action / Motion",
+    styleCamera: "Style & Camera",
+    visualStyle: "Visual Style",
+    cameraMovement: "Camera Movement",
+    mood: "Mood / Atmosphere",
+    duration: "Duration & Quality",
+    generate: "⚡ Generate Seedance Prompt",
+    batchMode: "📊 Batch Mode",
+    favorites: "❤️ Favorites",
+    copy: "📋 Copy Prompt",
+    variation: "🔄 Variation",
+    enhance: "✨ Enhance",
+    aiOptimize: "🤖 AI Optimize",
+    save: "❤️ Save"
+  },
+  zh: {
+    title: "Seedance 提示词生成器",
+    subtitle: "排名第一的免费AI视频提示词生成器。为Seedance 2.0、1.5 Pro和1.0创建优化的文本转视频和图像转视频提示词。选择场景、风格和镜头运动——几秒钟内获得专业AI视频提示词。",
+    badgeReady: "🔥 支持 Seedance 2.0",
+    badgeFree: "✓ 完全免费",
+    badgeSupports: "支持 1.0 / 1.5 / 2.0",
+    tabT2V: "📝 文字 → 视频",
+    tabI2V: "🖼️ 图片 → 视频",
+    tabV2Ref: "🎬 2.0 多模态",
+    subjectAction: "主体与动作",
+    sceneCategory: "场景类别",
+    subjectDesc: "主体描述",
+    actionMotion: "动作 / 运动",
+    styleCamera: "风格与镜头",
+    visualStyle: "视觉风格",
+    cameraMovement: "镜头运动",
+    mood: "情绪 / 氛围",
+    duration: "时长与质量",
+    generate: "⚡ 生成Seedance提示词",
+    batchMode: "📊 批量模式",
+    favorites: "❤️ 收藏夹",
+    copy: "📋 复制提示词",
+    variation: "🔄 变体",
+    enhance: "✨ 增强",
+    aiOptimize: "🤖 AI优化",
+    save: "❤️ 保存"
+  },
+  ja: {
+    title: "Seedanceプロンプトジェネレーター",
+    subtitle: "Seedance用の第1位無料AIビデオプロンプトジェネレーター。Seedance 2.0、1.5 Pro、1.0用に最適化されたテキスト-ビデオ、画像-ビデオプロンプトを作成。シーン、スタイル、カメラの動きを選択して、数秒でプロ仕様のAIビデオプロンプトを取得。",
+    badgeReady: "🔥 Seedance 2.0対応",
+    badgeFree: "✓ 完全無料",
+    badgeSupports: "1.0 / 1.5 / 2.0対応",
+    tabT2V: "📝 テキスト → ビデオ",
+    tabI2V: "🖼️ 画像 → ビデオ",
+    tabV2Ref: "🎬 2.0 マルチモーダル",
+    subjectAction: "被写体とアクション",
+    sceneCategory: "シーンカテゴリー",
+    subjectDesc: "被写体の説明",
+    actionMotion: "アクション / 動き",
+    styleCamera: "スタイルとカメラ",
+    visualStyle: "ビジュアルスタイル",
+    cameraMovement: "カメラの動き",
+    mood: "ムード / 雰囲気",
+    duration: "時間と品質",
+    generate: "⚡ Seedanceプロンプト生成",
+    batchMode: "📊 バッチモード",
+    favorites: "❤️ お気に入り",
+    copy: "📋 プロンプトをコピー",
+    variation: "🔄 バリエーション",
+    enhance: "✨ 強化",
+    aiOptimize: "🤖 AI最適化",
+    save: "❤️ 保存"
+  },
+  ko: {
+    title: "Seedance 프롬프트 생성기",
+    subtitle: "Seedance용 1위 무료 AI 비디오 프롬프트 생성기. Seedance 2.0, 1.5 Pro, 1.0용 최적화된 텍스트-비디오 및 이미지-비디오 프롬프트 생성. 장면, 스타일, 카메라 움직임을 선택하여 몇 초 만에 전문적인 AI 비디오 프롬프트를 얻으세요.",
+    badgeReady: "🔥 Seedance 2.0 지원",
+    badgeFree: "✓ 완전 무료",
+    badgeSupports: "1.0 / 1.5 / 2.0 지원",
+    tabT2V: "📝 텍스트 → 비디오",
+    tabI2V: "🖼️ 이미지 → 비디오",
+    tabV2Ref: "🎬 2.0 멀티모달",
+    subjectAction: "주제와 액션",
+    sceneCategory: "장면 카테고리",
+    subjectDesc: "주제 설명",
+    actionMotion: "액션 / 움직임",
+    styleCamera: "스타일과 카메라",
+    visualStyle: "비주얼 스타일",
+    cameraMovement: "카메라 움직임",
+    mood: "분위기 / 톤",
+    duration: "지속시간과 품질",
+    generate: "⚡ Seedance 프롬프트 생성",
+    batchMode: "📊 배치 모드",
+    favorites: "❤️ 즐겨찾기",
+    copy: "📋 프롬프트 복사",
+    variation: "🔄 변형",
+    enhance: "✨ 향상",
+    aiOptimize: "🤖 AI 최적화",
+    save: "❤️ 저장"
+  },
+  fr: {
+    title: "Générateur de Prompts Seedance",
+    subtitle: "Le générateur de prompts vidéo AI gratuit #1 pour Seedance. Créez des prompts optimisés texte-vers-vidéo et image-vers-vidéo pour Seedance 2.0, 1.5 Pro et 1.0. Sélectionnez votre scène, style et mouvement de caméra — obtenez des prompts vidéo AI professionnels en quelques secondes.",
+    badgeReady: "🔥 Compatible Seedance 2.0",
+    badgeFree: "✓ 100% Gratuit",
+    badgeSupports: "Supporte 1.0 / 1.5 / 2.0",
+    tabT2V: "📝 Texte → Vidéo",
+    tabI2V: "🖼️ Image → Vidéo",
+    tabV2Ref: "🎬 2.0 Multi-Modal",
+    subjectAction: "Sujet et Action",
+    sceneCategory: "Catégorie de Scène",
+    subjectDesc: "Description du Sujet",
+    actionMotion: "Action / Mouvement",
+    styleCamera: "Style et Caméra",
+    visualStyle: "Style Visuel",
+    cameraMovement: "Mouvement de Caméra",
+    mood: "Ambiance / Atmosphère",
+    duration: "Durée et Qualité",
+    generate: "⚡ Générer Prompt Seedance",
+    batchMode: "📊 Mode Lot",
+    favorites: "❤️ Favoris",
+    copy: "📋 Copier Prompt",
+    variation: "🔄 Variation",
+    enhance: "✨ Améliorer",
+    aiOptimize: "🤖 Optimiser IA",
+    save: "❤️ Sauvegarder"
+  }
+};
+
+let currentLang = localStorage.getItem('seedance_language') || 'en';
+
+function changeLanguage() {
+  currentLang = document.getElementById('languageSelector').value;
+  localStorage.setItem('seedance_language', currentLang);
+  updateLanguage();
+}
+
+function updateLanguage() {
+  const t = translations[currentLang];
+
+  // Update HTML lang attribute
+  document.getElementById('htmlLang').lang = currentLang;
+
+  // Update page title and meta
+  document.title = `${t.title} — Free AI Video Prompt Builder Tool for 2.0 | SeedanceTool`;
+
+  // Update text content using data attributes
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    if (t[key]) element.textContent = t[key];
+  });
+
+  // Update specific elements
+  const h1 = document.querySelector('h1');
+  if (h1) h1.textContent = t.title;
+
+  const subtitle = document.querySelector('.subtitle');
+  if (subtitle) subtitle.textContent = t.subtitle;
+}
+
+function initializeLanguage() {
+  document.getElementById('languageSelector').value = currentLang;
+  updateLanguage();
+}
+
+// USER AUTHENTICATION SYSTEM
+let currentUser = JSON.parse(localStorage.getItem('seedance_user') || 'null');
+
+function initializeAuth() {
+  if (currentUser) {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('userSection').style.display = 'block';
+    document.getElementById('username').textContent = currentUser.username;
+  } else {
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('userSection').style.display = 'none';
+  }
+}
+
+function showLogin() {
+  const modal = createModal('🔐 Login to SeedanceTool', generateLoginHTML());
+  document.body.appendChild(modal);
+}
+
+function showRegister() {
+  const modal = createModal('✨ Create Account', generateRegisterHTML());
+  document.body.appendChild(modal);
+}
+
+function generateLoginHTML() {
+  return `
+    <form onsubmit="handleLogin(event)">
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Email</label>
+        <input type="email" id="loginEmail" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="your@email.com">
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Password</label>
+        <input type="password" id="loginPassword" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="••••••••">
+      </div>
+
+      <button type="submit" style="width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; margin-bottom: 16px;">
+        🚀 Login
+      </button>
+
+      <div style="text-align: center;">
+        <button type="button" onclick="closeModal(); showRegister();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 12px;">
+          Don't have an account? Sign up
+        </button>
+      </div>
+    </form>
+  `;
+}
+
+function generateRegisterHTML() {
+  return `
+    <form onsubmit="handleRegister(event)">
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Username</label>
+        <input type="text" id="regUsername" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="Choose a username">
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Email</label>
+        <input type="email" id="regEmail" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="your@email.com">
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Password</label>
+        <input type="password" id="regPassword" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="Choose a strong password">
+      </div>
+
+      <button type="submit" style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--accent), #8b7cf7); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; margin-bottom: 16px;">
+        ✨ Create Account
+      </button>
+
+      <div style="text-align: center;">
+        <button type="button" onclick="closeModal(); showLogin();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 12px;">
+          Already have an account? Login
+        </button>
+      </div>
+    </form>
+  `;
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+
+  // Simple authentication (in real app, this would be server-side)
+  const users = JSON.parse(localStorage.getItem('seedance_users') || '[]');
+  const user = users.find(u => u.email === email && u.password === password);
+
+  if (user) {
+    currentUser = user;
+    localStorage.setItem('seedance_user', JSON.stringify(user));
+    initializeAuth();
+    closeModal();
+    showToast('🎉 Welcome back, ' + user.username + '!');
+  } else {
+    showToast('❌ Invalid email or password');
+  }
+}
+
+function handleRegister(event) {
+  event.preventDefault();
+
+  const username = document.getElementById('regUsername').value;
+  const email = document.getElementById('regEmail').value;
+  const password = document.getElementById('regPassword').value;
+
+  if (password.length < 6) {
+    showToast('❌ Password must be at least 6 characters');
+    return;
+  }
+
+  const users = JSON.parse(localStorage.getItem('seedance_users') || '[]');
+
+  // Check if user already exists
+  if (users.find(u => u.email === email)) {
+    showToast('❌ Email already registered');
+    return;
+  }
+
+  // Create new user
+  const newUser = {
+    id: Date.now(),
+    username,
+    email,
+    password, // In real app, this would be hashed
+    createdAt: new Date().toISOString(),
+    promptsGenerated: 0,
+    favoritePrompts: []
+  };
+
+  users.push(newUser);
+  localStorage.setItem('seedance_users', JSON.stringify(users));
+
+  currentUser = newUser;
+  localStorage.setItem('seedance_user', JSON.stringify(newUser));
+
+  initializeAuth();
+  closeModal();
+  showToast('🎉 Account created successfully! Welcome, ' + username + '!');
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('seedance_user');
+  initializeAuth();
+  showToast('👋 Logged out successfully');
+}
+
+function showUserDashboard() {
+  const modal = createModal('📊 Your Dashboard', generateDashboardHTML(), 'large');
+  document.body.appendChild(modal);
+}
+
+function generateDashboardHTML() {
+  const userStats = getUserStats();
+
+  return `
+    <div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px;">
+        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); text-align: center;">
+          <div style="font-size: 24px; font-weight: 700; color: var(--accent);">${userStats.promptsGenerated}</div>
+          <div style="font-size: 12px; color: var(--text-dim);">Prompts Generated</div>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); text-align: center;">
+          <div style="font-size: 24px; font-weight: 700; color: var(--cyan);">${userStats.favoriteCount}</div>
+          <div style="font-size: 12px; color: var(--text-dim);">Saved Favorites</div>
+        </div>
+
+        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); text-align: center;">
+          <div style="font-size: 24px; font-weight: 700; color: var(--pink);">${userStats.daysSinceJoined}</div>
+          <div style="font-size: 12px; color: var(--text-dim);">Days Active</div>
+        </div>
+      </div>
+
+      <h4 style="margin-bottom: 16px; color: var(--text-primary);">Recent Activity</h4>
+
+      <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 16px;">
+        <div style="font-size: 14px; color: var(--text-primary); margin-bottom: 8px;">🎯 Achievement Unlocked!</div>
+        <div style="font-size: 12px; color: var(--text-dim);">Welcome to SeedanceTool! Start generating prompts to unlock more achievements.</div>
+      </div>
+
+      <h4 style="margin-bottom: 16px; color: var(--text-primary);">Account Settings</h4>
+
+      <div style="display: flex; gap: 10px;">
+        <button onclick="exportUserData()" style="padding: 8px 16px; background: var(--accent); color: white; border: none; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer;">
+          📥 Export Data
+        </button>
+        <button onclick="clearUserData()" style="padding: 8px 16px; background: var(--pink); color: white; border: none; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer;">
+          🗑️ Clear Data
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function getUserStats() {
+  const joinDate = new Date(currentUser.createdAt);
+  const daysSinceJoined = Math.floor((Date.now() - joinDate.getTime()) / (1000 * 60 * 60 * 24));
+
+  return {
+    promptsGenerated: currentUser.promptsGenerated || 0,
+    favoriteCount: favorites.length,
+    daysSinceJoined: daysSinceJoined + 1
+  };
+}
+
+function exportUserData() {
+  const data = {
+    user: currentUser,
+    favorites: favorites,
+    exportDate: new Date().toISOString()
+  };
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `seedancetool-data-${currentUser.username}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showToast('📥 Data exported successfully!');
+}
+
+function clearUserData() {
+  if (confirm('Are you sure you want to clear all your data? This cannot be undone.')) {
+    localStorage.removeItem('seedance_favorites');
+    currentUser.promptsGenerated = 0;
+    localStorage.setItem('seedance_user', JSON.stringify(currentUser));
+    favorites = [];
+    updateFavoritesCount();
+    showToast('🗑️ Data cleared successfully');
+    closeModal();
+  }
+}
+
+// Track prompt generation
+function trackPromptGeneration() {
+  if (currentUser) {
+    currentUser.promptsGenerated = (currentUser.promptsGenerated || 0) + 1;
+    localStorage.setItem('seedance_user', JSON.stringify(currentUser));
+  }
+}
+
 // INIT
 init();
+updateFavoritesCount();
+initializeLanguage();
+initializeAuth();
 </script>
 
 <!-- STRUCTURED DATA FOR SEO -->
