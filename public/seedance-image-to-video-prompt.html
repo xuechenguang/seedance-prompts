@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seedance Image to Video Prompt | I2V Prompt Examples</title>
+<meta name="description" content="Build image-to-video prompts for Seedance with motion-first instructions, camera movement, and negative constraints.">
+<link rel="canonical" href="https://seedancetool.com/seedance-image-to-video-prompt.html">
+<meta name="robots" content="index,follow">
+<style>
+:root { --bg:#0b0f14; --card:#13202d; --text:#ecf2f8; --sub:#9fb2c5; --acc:#49b6ff; --line:#2b3f54; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Arial, sans-serif; background: linear-gradient(180deg, #09121f 0%, var(--bg) 100%); color:var(--text); }
+.wrap { max-width: 980px; margin:0 auto; padding:24px; }
+h1 { margin:0 0 8px; font-size: clamp(30px, 5vw, 46px); }
+p { color:var(--sub); line-height:1.7; }
+.hero { padding:34px 0 12px; }
+.panel { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-top:16px; }
+pre { white-space: pre-wrap; color:#d8ecff; font-size:13px; line-height:1.6; }
+a.btn { text-decoration:none; display:inline-block; padding:12px 16px; border-radius:10px; font-weight:700; margin-right:8px; margin-top:8px; }
+.main { background:var(--acc); color:#06111c; }
+.alt { border:1px solid var(--line); color:var(--text); }
+footer { margin-top:26px; padding:20px 0; border-top:1px solid var(--line); color:var(--sub); font-size:13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1>Seedance Image to Video Prompt</h1>
+    <p>For I2V, describe only motion and camera behavior. Keep static visual details out of the prompt unless they need to change.</p>
+    <a class="btn main" href="/?mode=i2v&subject=Portrait%20photo%20of%20a%20runner&action=the%20runner%20starts%20moving%20forward%20as%20fabric%20and%20hair%20react%20to%20wind">Try I2V Example</a>
+    <a class="btn alt" href="/">Open Generator</a>
+  </section>
+
+  <section class="panel">
+    <h2>Motion-first template</h2>
+    <pre>[Main Prompt]
+Subject from the input image remains consistent. Start with subtle breathing motion, then shift into a confident forward movement. The camera tracks from medium shot to close-up, smooth and stable. Keep natural lighting continuity.
+
+[Negative Prompt]
+no morphing face, no identity drift, no body distortion, no frame flicker, no text watermark.
+
+[Render Params]
+style=photorealistic; duration=10s; quality=1080p.</pre>
+  </section>
+
+  <section class="panel">
+    <h2>Regional creator fit</h2>
+    <p>SEA ecommerce reels, JP/KR fashion motion clips, and US/EU short ad creatives all benefit from controlled I2V motion prompts.</p>
+  </section>
+
+  <footer>
+    <a href="/seedance-prompt-generator.html">Seedance Prompt Generator</a> · <a href="/seedance-cinematic-prompt-template.html">Cinematic Templates</a>
+  </footer>
+</div>
+</body>
+</html>

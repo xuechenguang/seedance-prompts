@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SeedanceTool Pro | Prompt Pack Export</title>
+<meta name="description" content="Upgrade to SeedanceTool Pro to unlock prompt pack export and advanced workflow utilities.">
+<link rel="canonical" href="https://seedancetool.com/pro.html">
+<meta name="robots" content="index,follow">
+<style>
+:root { --bg:#0b0b11; --card:#171724; --text:#f0f0f5; --sub:#9ca0b8; --acc:#00cec9; --line:#2a2a3a; --warn:#fdcb6e; }
+* { box-sizing:border-box; }
+body { margin:0; font-family: Arial, sans-serif; background: radial-gradient(circle at 90% -5%, #25253a 0%, #0b0b11 38%); color:var(--text); }
+.wrap { max-width:900px; margin:0 auto; padding:24px; }
+h1 { margin:0 0 8px; font-size: clamp(30px, 5vw, 44px); }
+p { color:var(--sub); line-height:1.7; }
+.card { margin-top:18px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:20px; }
+.price { font-size:42px; font-weight:800; color:var(--warn); margin:4px 0 6px; }
+ul { color:var(--text); }
+li { margin:8px 0; }
+a.btn { display:inline-block; text-decoration:none; padding:12px 18px; border-radius:10px; font-weight:800; margin-right:10px; margin-top:8px; }
+.main { background:var(--acc); color:#011; }
+.alt { border:1px solid var(--line); color:var(--text); }
+.note { margin-top:14px; font-size:13px; color:var(--sub); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>SeedanceTool Pro</h1>
+  <p>Unlock paid workflow utilities while keeping the core generator free.</p>
+
+  <div class="card">
+    <div class="price">$9 <span style="font-size:16px;color:#cfcfd8;">one-time</span></div>
+    <ul>
+      <li>Prompt Pack export (`.json`) from generated result</li>
+      <li>Pro polish workflow for production prompt handoff</li>
+      <li>Future Pro utilities in this track</li>
+    </ul>
+    <a class="btn main" id="checkoutBtn" href="#">Checkout with Creem</a>
+    <a class="btn alt" href="/">Back to Generator</a>
+    <p class="note">Set your Creem checkout URL in this page script before going live.</p>
+  </div>
+
+  <div class="card">
+    <strong>Creem callback setup</strong>
+    <p>Success URL: <code>https://seedancetool.com/payment-success.html</code></p>
+    <p>Cancel URL: <code>https://seedancetool.com/payment-cancel.html</code></p>
+  </div>
+</div>
+<script>
+const CREEM_CHECKOUT_URL = '';
+const btn = document.getElementById('checkoutBtn');
+if (CREEM_CHECKOUT_URL) {
+  btn.href = CREEM_CHECKOUT_URL;
+} else {
+  btn.textContent = 'Configure Creem URL First';
+  btn.style.opacity = '0.65';
+  btn.onclick = (e) => {
+    e.preventDefault();
+    alert('Set CREEM_CHECKOUT_URL in pro.html first.');
+  };
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Success | SeedanceTool</title>
+<meta name="robots" content="noindex,follow">
+<style>
+body { margin:0; font-family: Arial, sans-serif; background:#0d1214; color:#e8f6f5; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+.card { width:min(92vw,640px); background:#112025; border:1px solid #23424b; border-radius:12px; padding:24px; }
+a { color:#6ff7eb; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Payment successful</h1>
+  <p>Your Pro access is now activated on this device.</p>
+  <p>Redirecting to generator in <span id="t">3</span>s...</p>
+  <p><a href="/?pro=1">Go now</a></p>
+</div>
+<script>
+localStorage.setItem('seedance_pro_unlocked', '1');
+let n = 3;
+const t = document.getElementById('t');
+const timer = setInterval(() => {
+  n -= 1;
+  t.textContent = String(n);
+  if (n <= 0) {
+    clearInterval(timer);
+    window.location.href = '/?pro=1';
+  }
+}, 1000);
+</script>
+</body>
+</html>

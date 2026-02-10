@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://seedancetool.com/</loc>
-    <lastmod>2026-02-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://seedancetool.com/#generator</loc>
-    <lastmod>2026-02-10</lastmod>
-    <priority>0.9</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://seedancetool.com/#templates</loc>
-    <lastmod>2026-02-10</lastmod>
-    <priority>0.8</priority>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://seedancetool.com/#formula</loc>
-    <lastmod>2026-02-10</lastmod>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-  </url>
+  <url><loc>https://seedancetool.com/</loc><lastmod>2026-02-10</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://seedancetool.com/pro.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://seedancetool.com/privacy.html</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://seedancetool.com/terms.html</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://seedancetool.com/contact.html</loc><lastmod>2026-02-10</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <url><loc>https://seedancetool.com/seedance-prompt-generator.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-image-to-video-prompt.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-cinematic-prompt-template.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-2-0-prompt-generator.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-prompt-template.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-video-prompt-builder.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-text-to-video-prompt.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-ai-video-prompt.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-camera-movement-prompts.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-multishot-prompt.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://seedancetool.com/seedance-prompt-examples.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <url><loc>https://seedancetool.com/blog/</loc><lastmod>2026-02-10</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://seedancetool.com/blog/seedance-2-0-update.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://seedancetool.com/blog/seedance-prompt-guide-2026.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://seedancetool.com/blog/seedance-image-to-video-tips.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://seedancetool.com/blog/seedance-camera-language-cheatsheet.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://seedancetool.com/blog/seedance-vs-runway-prompts.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://seedancetool.com/blog/seedance-commercial-ad-prompts.html</loc><lastmod>2026-02-10</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>

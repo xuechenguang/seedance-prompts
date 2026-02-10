@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seedance Prompt Generator — Free AI Video Prompt Builder Tool for 2.0 | SeedanceTool</title>
 <meta name="description" content="#1 Free Seedance prompt generator tool. Create optimized AI video prompts for Seedance 2.0, 1.5 Pro & 1.0. Generate text-to-video and image-to-video prompts with camera movements, multi-shot narratives, and scene templates. No signup required.">
-<meta name="keywords" content="seedance prompt generator, AI video prompt tool, text to video prompt creator, seedance AI prompts, free video prompt generator, seedance 2.0 prompts, seedance prompt builder, image to video prompts, seedance prompt templates, AI video generator prompts, seedance camera movement prompts, multi-shot video prompts">
+<meta name="keywords" content="seedance prompt generator, seedance ai video prompt, seedance 2.0 prompt generator, seedance prompt template, seedance text to video prompt, seedance image to video prompt, seedance camera movement prompts, seedance multi shot prompt, seedance prompt examples, seedance video prompt builder, free seedance prompt tool, best seedance prompts for ads, seedance cinematic prompt template, seedance commercial ad prompts">
 <meta property="og:title" content="Seedance Prompt Generator — Free AI Video Prompt Builder">
 <meta property="og:description" content="#1 Free Seedance prompt generator. Create optimized AI video prompts for Seedance 2.0, 1.5 Pro & 1.0. Templates, camera controls, multi-shot narratives. No signup required.">
 <meta property="og:type" content="website">
@@ -13,12 +13,28 @@
 <link rel="canonical" href="https://seedancetool.com/">
 <meta name="robots" content="index, follow">
 <meta name="author" content="SeedanceTool">
-<meta property="og:image" content="https://seedancetool.com/og-image.png">
+<meta property="og:image" content="https://seedancetool.com/og-image.svg">
 <meta property="og:image:alt" content="Seedance Prompt Generator Tool Interface">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Seedance Prompt Generator — Free AI Video Prompt Builder">
 <meta name="twitter:description" content="#1 Free tool to create optimized AI video prompts for Seedance 2.0">
-<meta name="twitter:image" content="https://seedancetool.com/og-image.png">
+<meta name="twitter:image" content="https://seedancetool.com/og-image.svg">
+<!-- Optional analytics setup:
+     1) Set your GA4 Measurement ID in data-ga4-id
+     2) Set your Plausible domain in data-plausible-domain -->
+<meta name="seedancetool:analytics" data-ga4-id="" data-plausible-domain="">
+<!-- Optional monetization setup:
+     1) Set your Creem checkout URL in data-creem-checkout-url -->
+<meta name="seedancetool:monetization" data-creem-checkout-url="">
+<!-- Optional Firebase Auth setup for Google Sign-In:
+     Fill values below with your Firebase web app config -->
+<meta
+  name="seedancetool:firebase"
+  data-api-key="AIzaSyC-Xg1unC6W_B6rNKb4E8swM9GeDjaxTnQ"
+  data-auth-domain="seedancetool.firebaseapp.com"
+  data-project-id="seedancetool"
+  data-app-id="1:1090053884616:web:7083f6d4c57446e4b5b3fd"
+>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236c5ce7'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='white'%3E⚡%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -563,6 +579,33 @@ footer {
 footer a { color: var(--text-secondary); text-decoration: none; }
 footer a:hover { color: var(--cyan); }
 
+.landing-links {
+  margin-top: 14px;
+  font-size: 12px;
+}
+.landing-links a {
+  color: var(--text-secondary);
+  margin: 0 8px;
+  text-decoration: none;
+}
+.landing-links a:hover { color: var(--cyan); }
+
+.pro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(253, 203, 110, 0.12);
+  color: var(--orange);
+  border: 1px solid rgba(253, 203, 110, 0.3);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
@@ -592,20 +635,11 @@ footer a:hover { color: var(--cyan); }
 
   <!-- TOP BAR -->
   <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 15px; align-items: center;">
-    <!-- USER SECTION -->
-    <div id="userSection" style="display: none;">
-      <span style="color: var(--text-secondary); font-size: 12px;">Welcome, <span id="username"></span></span>
-      <button onclick="showUserDashboard()" style="margin-left: 10px; padding: 4px 8px; background: var(--accent); color: white; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">📊 Dashboard</button>
-      <button onclick="logout()" style="margin-left: 5px; padding: 4px 8px; background: var(--text-dim); color: white; border: none; border-radius: 4px; font-size: 11px; cursor: pointer;">Logout</button>
+    <div id="authPanel" style="display: flex; gap: 8px; align-items: center;">
+      <span id="authStatus" style="font-size: 12px; color: var(--text-secondary);">Guest</span>
+      <button id="googleLoginBtn" onclick="signInWithGoogle()" style="padding: 6px 10px; background: var(--accent); border: none; color: white; border-radius: 6px; font-size: 12px; cursor: pointer;">Google Login</button>
+      <button id="logoutBtn" onclick="signOutUser()" style="display: none; padding: 6px 10px; background: transparent; border: 1px solid var(--border); color: var(--text-primary); border-radius: 6px; font-size: 12px; cursor: pointer;">Logout</button>
     </div>
-
-    <!-- LOGIN SECTION -->
-    <div id="loginSection">
-      <button onclick="showLogin()" style="padding: 6px 12px; background: transparent; border: 1px solid var(--border); color: var(--text-primary); border-radius: 6px; font-size: 12px; cursor: pointer; margin-right: 8px;">Login</button>
-      <button onclick="showRegister()" style="padding: 6px 12px; background: var(--accent); color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer;">Sign Up</button>
-    </div>
-
-    <!-- LANGUAGE SELECTOR -->
     <select id="languageSelector" onchange="changeLanguage()" style="padding: 6px 10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; color: var(--text-primary); font-size: 12px;">
       <option value="en">🇺🇸 English</option>
       <option value="zh">🇨🇳 中文</option>
@@ -626,13 +660,13 @@ footer a:hover { color: var(--cyan); }
 
 <!-- MODE TABS -->
 <div class="mode-tabs animate-in delay-1">
-  <button class="mode-tab active" onclick="setMode('t2v')">📝 Text → Video</button>
-  <button class="mode-tab" onclick="setMode('i2v')">🖼️ Image → Video</button>
-  <button class="mode-tab" onclick="setMode('v2ref')">🎬 2.0 Multi-Modal</button>
+  <button class="mode-tab active" onclick="setMode('t2v', this)">📝 Text → Video</button>
+  <button class="mode-tab" onclick="setMode('i2v', this)">🖼️ Image → Video</button>
+  <button class="mode-tab" onclick="setMode('v2ref', this)">🎬 2.0 Multi-Modal</button>
 </div>
 
 <!-- MAIN BUILDER -->
-<div class="main-grid animate-in delay-2">
+<div class="main-grid animate-in delay-2" id="generator">
 
   <!-- LEFT: Subject & Scene -->
   <div class="card">
@@ -661,6 +695,11 @@ footer a:hover { color: var(--cyan); }
     <div class="field">
       <label>Action / Motion</label>
       <textarea id="action" placeholder="e.g., slowly turns around and smiles, hair blowing in the wind" rows="2"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Negative Constraints (Optional)</label>
+      <textarea id="negative" placeholder="e.g., no blur, no extra fingers, no text watermark, no distortion" rows="2"></textarea>
     </div>
 
     <div class="field" id="i2vNote" style="display:none;">
@@ -735,6 +774,15 @@ footer a:hover { color: var(--cyan); }
         </select>
       </div>
     </div>
+
+    <div class="field">
+      <label>Output Level</label>
+      <select id="outputLevel">
+        <option value="fast">Fast (single-line prompt)</option>
+        <option value="pro" selected>Pro (structured prompt)</option>
+        <option value="cinematic">Cinematic (high-detail)</option>
+      </select>
+    </div>
   </div>
 
   <!-- MULTI-SHOT (optional) -->
@@ -801,6 +849,7 @@ footer a:hover { color: var(--cyan); }
         ❤️ Favorites (<span id="favCount">0</span>)
       </button>
     </div>
+    <p style="margin-top: 8px; font-size: 12px; color: var(--text-dim);">Google login is required before generating prompts.</p>
   </div>
 
   <!-- OUTPUT -->
@@ -812,7 +861,9 @@ footer a:hover { color: var(--cyan); }
         <button class="btn btn-primary" onclick="copyPrompt()">📋 Copy Prompt</button>
         <button class="btn btn-secondary" onclick="regenerateVariation()">🔄 Variation</button>
         <button class="btn btn-secondary" onclick="enhancePrompt()">✨ Enhance</button>
-        <button class="btn btn-secondary" onclick="optimizeWithAI()">🤖 AI Optimize</button>
+        <button class="btn btn-secondary" onclick="polishPrompt()">🎯 Pro Polish</button>
+        <button class="btn btn-secondary" onclick="exportPromptPack()">📦 Export Pack</button>
+        <button class="btn btn-secondary" onclick="openProCheckout()">💳 Unlock Pro</button>
         <button class="btn btn-secondary" onclick="addToFavorites()">❤️ Save</button>
       </div>
     </div>
@@ -821,7 +872,7 @@ footer a:hover { color: var(--cyan); }
 </div>
 
 <!-- PROMPT FORMULA -->
-<div class="formula-section animate-in delay-3">
+<div class="formula-section animate-in delay-3" id="formula">
   <div class="formula-title">📐 Seedance Prompt Formula</div>
   <div class="formula-block">
     <span class="f-subject">[Subject]</span> + <span class="f-action">[Motion/Action]</span> + <span class="f-scene">[Background/Scene]</span> + <span class="f-camera">[Camera Movement]</span>
@@ -832,7 +883,7 @@ For Seedance 2.0: Use <span class="f-subject">@Image1</span> <span class="f-acti
 </div>
 
 <!-- TEMPLATES -->
-<div class="templates-section">
+<div class="templates-section" id="templates">
   <div class="section-header">
     <h2>🎯 Prompt Templates</h2>
     <p>One-click templates for common scenarios. Click to load into the generator.</p>
@@ -844,7 +895,21 @@ For Seedance 2.0: Use <span class="f-subject">@Image1</span> <span class="f-acti
   <p>SeedanceTool.com — Free Seedance Prompt Generator for AI video creation</p>
   <p style="margin-top: 8px;">Not affiliated with ByteDance. Seedance is a trademark of ByteDance.</p>
   <p style="margin-top: 8px;">
-    <a href="#formula">Prompt Guide</a> · <a href="#templates">Templates</a> · <a href="#generator">Generator</a>
+    <a href="#formula">Prompt Guide</a> · <a href="#templates">Templates</a> · <a href="#generator">Generator</a> · <a href="/pro.html">Pro</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a>
+  </p>
+  <p class="landing-links">
+    <a href="/seedance-prompt-generator.html">Seedance Prompt Generator</a>
+    <a href="/seedance-image-to-video-prompt.html">Image to Video Prompt</a>
+    <a href="/seedance-cinematic-prompt-template.html">Cinematic Prompt Template</a>
+    <a href="/seedance-2-0-prompt-generator.html">Seedance 2.0 Prompt</a>
+    <a href="/seedance-prompt-template.html">Seedance Prompt Template</a>
+    <a href="/seedance-video-prompt-builder.html">Video Prompt Builder</a>
+    <a href="/seedance-text-to-video-prompt.html">Text to Video Prompt</a>
+    <a href="/seedance-ai-video-prompt.html">AI Video Prompt</a>
+    <a href="/seedance-camera-movement-prompts.html">Camera Prompt</a>
+    <a href="/seedance-multishot-prompt.html">Multi-Shot Prompt</a>
+    <a href="/seedance-prompt-examples.html">Prompt Examples</a>
+    <a href="/blog/">Seedance Blog</a>
   </p>
 </footer>
 
@@ -857,6 +922,13 @@ For Seedance 2.0: Use <span class="f-subject">@Image1</span> <span class="f-acti
 let currentMode = 't2v';
 let currentStyle = 'photorealistic';
 let generatedPrompt = '';
+let analyticsReady = false;
+let plausibleReady = false;
+let isProUser = false;
+let creemCheckoutUrl = '';
+let authEnabled = false;
+let isAuthenticated = false;
+let authUser = null;
 
 // TEMPLATES DATA
 const templates = [
@@ -873,8 +945,209 @@ const templates = [
 
 // INIT
 function init() {
+  initAnalytics();
+  initMonetization();
+  initAuth();
+  initFromQuery();
   renderTemplates();
   setupChips();
+}
+
+function initAnalytics() {
+  const tag = document.querySelector('meta[name="seedancetool:analytics"]');
+  const ga4Id = (tag?.dataset?.ga4Id || '').trim();
+  const plausibleDomain = (tag?.dataset?.plausibleDomain || '').trim();
+
+  if (ga4Id) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', ga4Id);
+
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4Id)}`;
+    document.head.appendChild(gaScript);
+    analyticsReady = true;
+  }
+
+  if (plausibleDomain) {
+    const pScript = document.createElement('script');
+    pScript.defer = true;
+    pScript.dataset.domain = plausibleDomain;
+    pScript.src = 'https://plausible.io/js/script.js';
+    document.head.appendChild(pScript);
+    plausibleReady = true;
+  }
+}
+
+function trackEvent(name, props = {}) {
+  if (analyticsReady && typeof window.gtag === 'function') {
+    window.gtag('event', name, props);
+  }
+  if (plausibleReady && typeof window.plausible === 'function') {
+    window.plausible(name, { props });
+  }
+}
+
+function initMonetization() {
+  const tag = document.querySelector('meta[name="seedancetool:monetization"]');
+  creemCheckoutUrl = (tag?.dataset?.creemCheckoutUrl || '').trim();
+  isProUser = localStorage.getItem('seedance_pro_unlocked') === '1';
+  updateProUi();
+}
+
+function initAuth() {
+  const tag = document.querySelector('meta[name="seedancetool:firebase"]');
+  const config = {
+    apiKey: (tag?.dataset?.apiKey || '').trim(),
+    authDomain: (tag?.dataset?.authDomain || '').trim(),
+    projectId: (tag?.dataset?.projectId || '').trim(),
+    appId: (tag?.dataset?.appId || '').trim()
+  };
+  authEnabled = Boolean(config.apiKey && config.authDomain && config.projectId && config.appId);
+  if (!authEnabled) {
+    setAuthUiState(null, false);
+    return;
+  }
+
+  if (!window.firebase) {
+    loadFirebaseSdk(() => setupFirebaseAuth(config));
+    return;
+  }
+  setupFirebaseAuth(config);
+}
+
+function loadFirebaseSdk(onReady) {
+  const appScript = document.createElement('script');
+  appScript.src = 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js';
+  appScript.onload = () => {
+    const authScript = document.createElement('script');
+    authScript.src = 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js';
+    authScript.onload = onReady;
+    document.head.appendChild(authScript);
+  };
+  document.head.appendChild(appScript);
+}
+
+function setupFirebaseAuth(config) {
+  try {
+    if (!firebase.apps.length) firebase.initializeApp(config);
+    firebase.auth().onAuthStateChanged((user) => {
+      isAuthenticated = Boolean(user);
+      authUser = user || null;
+      setAuthUiState(user, true);
+      if (user) trackEvent('login_success', { provider: 'google' });
+    });
+  } catch (err) {
+    console.error('Firebase init failed:', err);
+    setAuthUiState(null, false);
+  }
+}
+
+function setAuthUiState(user, enabled) {
+  const statusEl = document.getElementById('authStatus');
+  const loginBtn = document.getElementById('googleLoginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (!statusEl || !loginBtn || !logoutBtn) return;
+
+  if (!enabled) {
+    statusEl.textContent = 'Auth Setup Needed';
+    loginBtn.textContent = 'Config Firebase';
+    logoutBtn.style.display = 'none';
+    return;
+  }
+
+  if (user) {
+    statusEl.textContent = `Hi, ${user.displayName || user.email || 'User'}`;
+    loginBtn.style.display = 'none';
+    logoutBtn.style.display = 'inline-block';
+  } else {
+    statusEl.textContent = 'Guest';
+    loginBtn.textContent = 'Google Login';
+    loginBtn.style.display = 'inline-block';
+    logoutBtn.style.display = 'none';
+  }
+}
+
+function signInWithGoogle() {
+  if (!authEnabled || !window.firebase) {
+    showToast('⚠️ Firebase auth config missing');
+    return;
+  }
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+    .then(() => {
+      showToast('✅ Logged in with Google');
+      trackEvent('login_click', { provider: 'google' });
+    })
+    .catch((err) => {
+      console.error(err);
+      showToast('❌ Login failed');
+      trackEvent('login_failed', { provider: 'google' });
+    });
+}
+
+function signOutUser() {
+  if (!authEnabled || !window.firebase) return;
+  firebase.auth().signOut().then(() => {
+    showToast('👋 Logged out');
+    trackEvent('logout', { source: 'home' });
+  });
+}
+
+function updateProUi() {
+  const badgeText = isProUser ? '⭐ Pro Unlocked' : '🚀 Free Plan';
+  let badge = document.getElementById('proBadge');
+  if (!badge) {
+    badge = document.createElement('div');
+    badge.id = 'proBadge';
+    badge.className = 'pro-badge';
+    const header = document.querySelector('header');
+    if (header) header.appendChild(badge);
+  }
+  badge.textContent = badgeText;
+}
+
+function openProCheckout() {
+  trackEvent('pro_checkout_click', { source: 'home' });
+  if (creemCheckoutUrl) {
+    window.location.href = creemCheckoutUrl;
+    return;
+  }
+  window.location.href = '/pro.html';
+}
+
+function initFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const subject = params.get('subject');
+  const action = params.get('action');
+  const mode = params.get('mode');
+  const style = params.get('style');
+  const pro = params.get('pro');
+
+  if (pro === '1') {
+    localStorage.setItem('seedance_pro_unlocked', '1');
+    isProUser = true;
+    updateProUi();
+    showToast('✅ Pro unlocked successfully');
+    trackEvent('pro_unlocked', { source: 'query' });
+  }
+
+  if (subject) document.getElementById('subject').value = subject;
+  if (action) document.getElementById('action').value = action;
+
+  if (style) {
+    document.querySelectorAll('#styleChips .chip').forEach(c => {
+      c.classList.toggle('active', c.dataset.v === style);
+    });
+    currentStyle = style;
+  }
+
+  if (mode && ['t2v', 'i2v', 'v2ref'].includes(mode)) {
+    const tab = document.querySelector(`.mode-tab[onclick*="setMode('${mode}'"]`);
+    setMode(mode, tab || undefined);
+  }
 }
 
 function setupChips() {
@@ -918,16 +1191,17 @@ function loadTemplate(index) {
   
   // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  trackEvent('template_use', { template_name: t.name, template_tag: t.tag });
   
   // Auto generate
   setTimeout(generatePrompt, 300);
 }
 
 // MODE SWITCHING
-function setMode(mode) {
+function setMode(mode, btn) {
   currentMode = mode;
   document.querySelectorAll('.mode-tab').forEach(tab => tab.classList.remove('active'));
-  event.target.classList.add('active');
+  if (btn) btn.classList.add('active');
   
   document.getElementById('i2vNote').style.display = mode === 'i2v' ? 'block' : 'none';
   document.getElementById('v2RefSection').style.display = mode === 'v2ref' ? 'block' : 'none';
@@ -997,10 +1271,20 @@ const moodDescriptions = {
 
 // GENERATE
 function generatePrompt() {
+  if (!isAuthenticated) {
+    showToast('🔐 Please login with Google first');
+    trackEvent('auth_gate_block', { feature: 'generate_prompt' });
+    return;
+  }
+
   const subject = document.getElementById('subject').value.trim();
   const action = document.getElementById('action').value.trim();
+  const negative = document.getElementById('negative').value.trim();
   const camera = document.getElementById('camera').value;
   const mood = document.getElementById('mood').value;
+  const duration = document.getElementById('duration').value;
+  const quality = document.getElementById('quality').value;
+  const outputLevel = document.getElementById('outputLevel').value;
   const shot2 = document.getElementById('shot2').value.trim();
   const shot3 = document.getElementById('shot3').value.trim();
   
@@ -1014,9 +1298,9 @@ function generatePrompt() {
   let prompt = '';
   
   if (currentMode === 'v2ref') {
-    prompt = buildV2Prompt(subject, action, camera, mood, shot2, shot3);
+    prompt = buildV2Prompt(subject, action, negative, camera, mood, duration, quality, outputLevel, shot2, shot3);
   } else {
-    prompt = buildStandardPrompt(subject, action, camera, mood, shot2, shot3);
+    prompt = buildStandardPrompt(subject, action, negative, camera, mood, duration, quality, outputLevel, shot2, shot3);
   }
   
   generatedPrompt = prompt;
@@ -1036,39 +1320,69 @@ function generatePrompt() {
 
   // Track user activity
   trackPromptGeneration();
+  trackEvent('generate_prompt', {
+    mode: currentMode,
+    style: currentStyle,
+    camera,
+    mood: mood || 'auto',
+    duration,
+    quality,
+    level: outputLevel
+  });
 }
 
-function buildStandardPrompt(subject, action, camera, mood, shot2, shot3) {
-  let parts = [];
-  
-  // Main shot
+function buildStandardPrompt(subject, action, negative, camera, mood, duration, quality, outputLevel, shot2, shot3) {
+  let shotLines = [];
   let mainShot = subject;
+
   if (action) mainShot += '. ' + capitalizeFirst(action);
-  
-  // Add scene/mood
-  if (mood && moodDescriptions[mood]) {
-    mainShot += '. ' + moodDescriptions[mood];
+  if (mood && moodDescriptions[mood]) mainShot += '. ' + moodDescriptions[mood];
+  if (camera !== 'fixed') mainShot += '. ' + cameraDescriptions[camera];
+
+  shotLines.push('Shot 1: ' + mainShot);
+  if (shot2) shotLines.push('Shot 2: ' + shot2);
+  if (shot3) shotLines.push('Shot 3: ' + shot3);
+
+  const mainPrompt = [mainShot, styleDescriptions[currentStyle], `Duration ${duration}`, `Quality ${quality}`]
+    .filter(Boolean)
+    .join('. ') + '.';
+
+  const negativeLine = negative
+    ? negative
+    : 'low resolution, blurry, flicker, duplicated limbs, extra fingers, text watermark, logo, artifacting';
+
+  const cameraGuide = camera === 'fixed'
+    ? 'Static framing, stable composition, smooth temporal consistency.'
+    : `${cameraDescriptions[camera]}. Keep motion smooth and physically plausible.`;
+
+  if (outputLevel === 'fast') {
+    return `${mainPrompt} Negative prompt: ${negativeLine}.`;
   }
-  
-  // Camera
-  if (camera !== 'fixed') {
-    mainShot += '. ' + cameraDescriptions[camera];
-  }
-  
-  parts.push(mainShot);
-  
-  // Multi-shot
-  if (shot2) parts.push('Shot switch. ' + shot2);
-  if (shot3) parts.push('Shot switch. ' + shot3);
-  
-  // Style suffix
-  let prompt = parts.join(' ');
-  prompt += '. ' + styleDescriptions[currentStyle];
-  
-  return prompt;
+
+  const detailPack = outputLevel === 'cinematic'
+    ? 'Use cinematic composition, layered depth, realistic light falloff, clean motion blur, and coherent scene continuity.'
+    : 'Ensure clear subject-action-scene hierarchy with stable character and style consistency.';
+
+  return [
+    '[Main Prompt]',
+    mainPrompt,
+    '',
+    '[Storyboard]',
+    shotLines.join('\n'),
+    '',
+    '[Camera Direction]',
+    cameraGuide,
+    '',
+    '[Negative Prompt]',
+    negativeLine + '.',
+    '',
+    '[Render Params]',
+    `style=${currentStyle}; mood=${mood || 'auto'}; duration=${duration}; quality=${quality}.`,
+    detailPack
+  ].join('\n');
 }
 
-function buildV2Prompt(subject, action, camera, mood, shot2, shot3) {
+function buildV2Prompt(subject, action, negative, camera, mood, duration, quality, outputLevel, shot2, shot3) {
   const imgRef = document.getElementById('imgRef').value.trim();
   const vidRef = document.getElementById('vidRef').value.trim();
   const audioRef = document.getElementById('audioRef').value.trim();
@@ -1090,19 +1404,39 @@ function buildV2Prompt(subject, action, camera, mood, shot2, shot3) {
   if (action) mainShot += '. ' + capitalizeFirst(action);
   if (mood && moodDescriptions[mood]) mainShot += '. ' + moodDescriptions[mood];
   if (camera !== 'fixed') mainShot += '. ' + cameraDescriptions[camera];
-  
   parts.push(mainShot);
   
   if (shot2) parts.push('Shot switch. ' + shot2);
   if (shot3) parts.push('Shot switch. ' + shot3);
   
-  let prompt = parts.join(' ');
-  prompt += '. ' + styleDescriptions[currentStyle];
-  
-  // Consistency note
-  prompt += '. Maintain consistent character appearance and visual style across all shots.';
-  
-  return prompt;
+  const core = parts.join(' ') + '. ' + styleDescriptions[currentStyle] + '.';
+  const negativeLine = negative
+    ? negative
+    : 'no visual drift, no identity change, no extra limbs, no text watermark, no logo, no frame jitter';
+
+  if (outputLevel === 'fast') {
+    return `${core} Duration ${duration}. Quality ${quality}. Negative prompt: ${negativeLine}.`;
+  }
+
+  const detailPack = outputLevel === 'cinematic'
+    ? 'Prioritize cinematic pacing, coherent reference transfer, realistic motion arcs, and seamless shot transitions.'
+    : 'Maintain consistent character appearance and visual style across all shots.';
+
+  return [
+    '[Main Prompt]',
+    `${core} Duration ${duration}. Quality ${quality}.`,
+    '',
+    '[Reference Mapping]',
+    imgRef ? `@Image1 => ${imgRef}` : '@Image1 => not used',
+    vidRef ? `@Video1 => ${vidRef}` : '@Video1 => not used',
+    audioRef ? `@Audio1 => ${audioRef}` : '@Audio1 => not used',
+    '',
+    '[Negative Prompt]',
+    negativeLine + '.',
+    '',
+    '[Consistency Rule]',
+    detailPack
+  ].join('\n');
 }
 
 function capitalizeFirst(s) {
@@ -1115,6 +1449,7 @@ function copyPrompt() {
     const toast = document.getElementById('copiedToast');
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 2000);
+    trackEvent('copy_prompt', { mode: currentMode, style: currentStyle });
   });
 }
 
@@ -1358,29 +1693,15 @@ function generateBatch() {
 }
 
 // AI OPTIMIZER
-function optimizeWithAI() {
+function polishPrompt() {
   if (!generatedPrompt) return;
-
-  showToast('🤖 AI optimization coming soon! This feature will analyze and improve your prompts.');
-
-  // For now, add some smart enhancements
-  const aiEnhancements = [
-    'Professional lighting with three-point setup',
-    'Cinematic color grading with teal and orange palette',
-    'Ultra-detailed textures and materials',
-    'Award-winning composition following rule of thirds',
-    'Smooth camera movements with stabilization',
-    'Dynamic range optimization for HDR quality',
-    'Depth of field for cinematic focus',
-    'Professional sound design consideration'
-  ];
-
-  const selectedEnhancements = aiEnhancements
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3)
-    .join('. ');
-
-  generatedPrompt += '. ' + selectedEnhancements;
+  const polishPack = [
+    'Keep temporal consistency frame-to-frame',
+    'Preserve facial identity and wardrobe continuity',
+    'Use physically plausible motion and lighting behavior',
+    'Avoid over-stylization that breaks subject realism'
+  ].join('. ') + '.';
+  generatedPrompt += '\n\n[Pro Polish]\n' + polishPack;
 
   const outputText = document.getElementById('outputText');
   let highlighted = generatedPrompt
@@ -1389,6 +1710,45 @@ function optimizeWithAI() {
     .replace(/(camera [^,.]+|tracking shot|aerial|drone shot|orbit|zoom[^,.]*|pan[^,.]*|dolly zoom|crane shot|follow shot|handheld)/gi, '<span class="camera">$&</span>');
 
   outputText.innerHTML = highlighted;
+  showToast('🎯 Prompt polished for production use');
+}
+
+function exportPromptPack() {
+  if (!generatedPrompt) {
+    showToast('⚠️ Generate a prompt first');
+    return;
+  }
+
+  if (!isProUser) {
+    showToast('🔒 Export Pack is Pro only');
+    trackEvent('pro_feature_locked', { feature: 'export_pack' });
+    setTimeout(openProCheckout, 300);
+    return;
+  }
+
+  const payload = {
+    prompt: generatedPrompt,
+    mode: currentMode,
+    style: currentStyle,
+    camera: document.getElementById('camera').value,
+    mood: document.getElementById('mood').value || 'auto',
+    duration: document.getElementById('duration').value,
+    quality: document.getElementById('quality').value,
+    exportedAt: new Date().toISOString()
+  };
+
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `seedance-prompt-pack-${Date.now()}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  showToast('📦 Prompt pack exported');
+  trackEvent('export_prompt_pack', { mode: currentMode, style: currentStyle });
 }
 
 // MODAL SYSTEM
@@ -1474,7 +1834,7 @@ const translations = {
     copy: "📋 Copy Prompt",
     variation: "🔄 Variation",
     enhance: "✨ Enhance",
-    aiOptimize: "🤖 AI Optimize",
+    aiOptimize: "🎯 Pro Polish",
     save: "❤️ Save"
   },
   zh: {
@@ -1501,7 +1861,7 @@ const translations = {
     copy: "📋 复制提示词",
     variation: "🔄 变体",
     enhance: "✨ 增强",
-    aiOptimize: "🤖 AI优化",
+    aiOptimize: "🎯 专业润色",
     save: "❤️ 保存"
   },
   ja: {
@@ -1528,7 +1888,7 @@ const translations = {
     copy: "📋 プロンプトをコピー",
     variation: "🔄 バリエーション",
     enhance: "✨ 強化",
-    aiOptimize: "🤖 AI最適化",
+    aiOptimize: "🎯 プロ研磨",
     save: "❤️ 保存"
   },
   ko: {
@@ -1555,7 +1915,7 @@ const translations = {
     copy: "📋 프롬프트 복사",
     variation: "🔄 변형",
     enhance: "✨ 향상",
-    aiOptimize: "🤖 AI 최적화",
+    aiOptimize: "🎯 프로 폴리시",
     save: "❤️ 저장"
   },
   fr: {
@@ -1582,7 +1942,7 @@ const translations = {
     copy: "📋 Copier Prompt",
     variation: "🔄 Variation",
     enhance: "✨ Améliorer",
-    aiOptimize: "🤖 Optimiser IA",
+    aiOptimize: "🎯 Finition Pro",
     save: "❤️ Sauvegarder"
   }
 };
@@ -1593,6 +1953,7 @@ function changeLanguage() {
   currentLang = document.getElementById('languageSelector').value;
   localStorage.setItem('seedance_language', currentLang);
   updateLanguage();
+  trackEvent('switch_language', { language: currentLang });
 }
 
 function updateLanguage() {
@@ -1623,261 +1984,16 @@ function initializeLanguage() {
   updateLanguage();
 }
 
-// USER AUTHENTICATION SYSTEM
-let currentUser = JSON.parse(localStorage.getItem('seedance_user') || 'null');
-
-function initializeAuth() {
-  if (currentUser) {
-    document.getElementById('loginSection').style.display = 'none';
-    document.getElementById('userSection').style.display = 'block';
-    document.getElementById('username').textContent = currentUser.username;
-  } else {
-    document.getElementById('loginSection').style.display = 'block';
-    document.getElementById('userSection').style.display = 'none';
-  }
-}
-
-function showLogin() {
-  const modal = createModal('🔐 Login to SeedanceTool', generateLoginHTML());
-  document.body.appendChild(modal);
-}
-
-function showRegister() {
-  const modal = createModal('✨ Create Account', generateRegisterHTML());
-  document.body.appendChild(modal);
-}
-
-function generateLoginHTML() {
-  return `
-    <form onsubmit="handleLogin(event)">
-      <div style="margin-bottom: 16px;">
-        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Email</label>
-        <input type="email" id="loginEmail" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="your@email.com">
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Password</label>
-        <input type="password" id="loginPassword" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="••••••••">
-      </div>
-
-      <button type="submit" style="width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; margin-bottom: 16px;">
-        🚀 Login
-      </button>
-
-      <div style="text-align: center;">
-        <button type="button" onclick="closeModal(); showRegister();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 12px;">
-          Don't have an account? Sign up
-        </button>
-      </div>
-    </form>
-  `;
-}
-
-function generateRegisterHTML() {
-  return `
-    <form onsubmit="handleRegister(event)">
-      <div style="margin-bottom: 16px;">
-        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Username</label>
-        <input type="text" id="regUsername" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="Choose a username">
-      </div>
-
-      <div style="margin-bottom: 16px;">
-        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Email</label>
-        <input type="email" id="regEmail" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="your@email.com">
-      </div>
-
-      <div style="margin-bottom: 20px;">
-        <label style="display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Password</label>
-        <input type="password" id="regPassword" required style="width: 100%; padding: 10px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary);" placeholder="Choose a strong password">
-      </div>
-
-      <button type="submit" style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--accent), #8b7cf7); color: white; border: none; border-radius: var(--radius); font-weight: 600; cursor: pointer; margin-bottom: 16px;">
-        ✨ Create Account
-      </button>
-
-      <div style="text-align: center;">
-        <button type="button" onclick="closeModal(); showLogin();" style="background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 12px;">
-          Already have an account? Login
-        </button>
-      </div>
-    </form>
-  `;
-}
-
-function handleLogin(event) {
-  event.preventDefault();
-
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
-
-  // Simple authentication (in real app, this would be server-side)
-  const users = JSON.parse(localStorage.getItem('seedance_users') || '[]');
-  const user = users.find(u => u.email === email && u.password === password);
-
-  if (user) {
-    currentUser = user;
-    localStorage.setItem('seedance_user', JSON.stringify(user));
-    initializeAuth();
-    closeModal();
-    showToast('🎉 Welcome back, ' + user.username + '!');
-  } else {
-    showToast('❌ Invalid email or password');
-  }
-}
-
-function handleRegister(event) {
-  event.preventDefault();
-
-  const username = document.getElementById('regUsername').value;
-  const email = document.getElementById('regEmail').value;
-  const password = document.getElementById('regPassword').value;
-
-  if (password.length < 6) {
-    showToast('❌ Password must be at least 6 characters');
-    return;
-  }
-
-  const users = JSON.parse(localStorage.getItem('seedance_users') || '[]');
-
-  // Check if user already exists
-  if (users.find(u => u.email === email)) {
-    showToast('❌ Email already registered');
-    return;
-  }
-
-  // Create new user
-  const newUser = {
-    id: Date.now(),
-    username,
-    email,
-    password, // In real app, this would be hashed
-    createdAt: new Date().toISOString(),
-    promptsGenerated: 0,
-    favoritePrompts: []
-  };
-
-  users.push(newUser);
-  localStorage.setItem('seedance_users', JSON.stringify(users));
-
-  currentUser = newUser;
-  localStorage.setItem('seedance_user', JSON.stringify(newUser));
-
-  initializeAuth();
-  closeModal();
-  showToast('🎉 Account created successfully! Welcome, ' + username + '!');
-}
-
-function logout() {
-  currentUser = null;
-  localStorage.removeItem('seedance_user');
-  initializeAuth();
-  showToast('👋 Logged out successfully');
-}
-
-function showUserDashboard() {
-  const modal = createModal('📊 Your Dashboard', generateDashboardHTML(), 'large');
-  document.body.appendChild(modal);
-}
-
-function generateDashboardHTML() {
-  const userStats = getUserStats();
-
-  return `
-    <div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px;">
-        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); text-align: center;">
-          <div style="font-size: 24px; font-weight: 700; color: var(--accent);">${userStats.promptsGenerated}</div>
-          <div style="font-size: 12px; color: var(--text-dim);">Prompts Generated</div>
-        </div>
-
-        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); text-align: center;">
-          <div style="font-size: 24px; font-weight: 700; color: var(--cyan);">${userStats.favoriteCount}</div>
-          <div style="font-size: 12px; color: var(--text-dim);">Saved Favorites</div>
-        </div>
-
-        <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); text-align: center;">
-          <div style="font-size: 24px; font-weight: 700; color: var(--pink);">${userStats.daysSinceJoined}</div>
-          <div style="font-size: 12px; color: var(--text-dim);">Days Active</div>
-        </div>
-      </div>
-
-      <h4 style="margin-bottom: 16px; color: var(--text-primary);">Recent Activity</h4>
-
-      <div style="background: var(--bg-secondary); padding: 16px; border-radius: var(--radius-sm); margin-bottom: 16px;">
-        <div style="font-size: 14px; color: var(--text-primary); margin-bottom: 8px;">🎯 Achievement Unlocked!</div>
-        <div style="font-size: 12px; color: var(--text-dim);">Welcome to SeedanceTool! Start generating prompts to unlock more achievements.</div>
-      </div>
-
-      <h4 style="margin-bottom: 16px; color: var(--text-primary);">Account Settings</h4>
-
-      <div style="display: flex; gap: 10px;">
-        <button onclick="exportUserData()" style="padding: 8px 16px; background: var(--accent); color: white; border: none; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer;">
-          📥 Export Data
-        </button>
-        <button onclick="clearUserData()" style="padding: 8px 16px; background: var(--pink); color: white; border: none; border-radius: var(--radius-sm); font-size: 12px; cursor: pointer;">
-          🗑️ Clear Data
-        </button>
-      </div>
-    </div>
-  `;
-}
-
-function getUserStats() {
-  const joinDate = new Date(currentUser.createdAt);
-  const daysSinceJoined = Math.floor((Date.now() - joinDate.getTime()) / (1000 * 60 * 60 * 24));
-
-  return {
-    promptsGenerated: currentUser.promptsGenerated || 0,
-    favoriteCount: favorites.length,
-    daysSinceJoined: daysSinceJoined + 1
-  };
-}
-
-function exportUserData() {
-  const data = {
-    user: currentUser,
-    favorites: favorites,
-    exportDate: new Date().toISOString()
-  };
-
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `seedancetool-data-${currentUser.username}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-
-  showToast('📥 Data exported successfully!');
-}
-
-function clearUserData() {
-  if (confirm('Are you sure you want to clear all your data? This cannot be undone.')) {
-    localStorage.removeItem('seedance_favorites');
-    currentUser.promptsGenerated = 0;
-    localStorage.setItem('seedance_user', JSON.stringify(currentUser));
-    favorites = [];
-    updateFavoritesCount();
-    showToast('🗑️ Data cleared successfully');
-    closeModal();
-  }
-}
-
-// Track prompt generation
+// LIGHTWEIGHT USAGE TRACKING (ANONYMOUS, LOCAL ONLY)
 function trackPromptGeneration() {
-  if (currentUser) {
-    currentUser.promptsGenerated = (currentUser.promptsGenerated || 0) + 1;
-    localStorage.setItem('seedance_user', JSON.stringify(currentUser));
-  }
+  const count = Number(localStorage.getItem('seedance_prompt_count') || '0') + 1;
+  localStorage.setItem('seedance_prompt_count', String(count));
 }
 
 // INIT
 init();
 updateFavoritesCount();
 initializeLanguage();
-initializeAuth();
 </script>
 
 <!-- STRUCTURED DATA FOR SEO -->
